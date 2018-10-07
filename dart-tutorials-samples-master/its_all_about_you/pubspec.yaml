@@ -1,0 +1,8 @@
+name: its_all_about_you
+description: A sample application
+dependencies:
+  browser: ^0.10.0
+
+homepage: https://www.dartlang.org/docs/tutorials/fetchdata/
+gist: https://gist.github.com/Sfshaza/245c841595786300b3f4
+dartpad: https://dartpad.dartlang.org/245c841595786300b3f4

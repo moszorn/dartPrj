@@ -1,0 +1,8 @@
+name: mini
+description: A sample application
+dependencies:
+  browser: ^0.10.0
+
+homepage: https://www.dartlang.org/docs/tutorials/connect-dart-html/
+gist: https://gist.github.com/Sfshaza/9832dbce44aecca3da56
+dartpad: https://dartpad.dartlang.org/9832dbce44aecca3da56
