@@ -1,0 +1,98 @@
+*  every variable in Dart refers to an object—an instance of a clas
+
+
+Numbers :  Both int and double are subtypes of num (An integer or floating-point number.)
+  int : -2^63  ~  2^63 -1
+  double:  (double-precision) floating-point number
+
+Integers are numbers without a decimal point.If a number includes a decimal, it is a double.
+  
+int x = 1;
+int hex = 0xDEADBEEF;
+double y = 1.1;
+double exponents = 1.42e5;
+
+
+int one = int.parse('1') //String to int
+double d = double.parse('1.1') //String to double
+String i = 1.toString(); //int to String
+String s = 3.14159.toStringAsFixed(2); //double to String 
+
+assert((3 | 4) == 7); // 0011 | 0100 == 0111 bitwise shift
+
+
+Strings 
+
+A Dart string is a sequence of UTF-16 code units.
+In Dart, runes are the UTF-32 code points of a string.
+Because a Dart string is a sequence of UTF-16 code units, expressing 32-bit Unicode values within a string requires special syntax.
+對於Unicode code point 用 \uXXXX 呈現, XXXX表 4個 16進制數值
+不足4個16進制,用 \u{xxxxx} emoji
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
