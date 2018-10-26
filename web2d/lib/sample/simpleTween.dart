@@ -24,7 +24,7 @@ Future<Null> exec() async {
 
       /**prepare stage */
       var stageOptions = StageOptions()
-      ..backgroundColor = Color.Gray
+      ..backgroundColor = Color.White
       ..renderEngine = RenderEngine.WebGL;
       var stage = new Stage(dom.querySelector('#stage'),width: CANVAS_WIDTH, height:CANVAS_HEIGHT, options:stageOptions);
 

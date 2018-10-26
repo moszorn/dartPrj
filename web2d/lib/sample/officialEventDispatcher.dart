@@ -6,7 +6,10 @@ import 'package:stagexl/stagexl.dart';
 /* const CANVAS_WIDTH = 1903;
 const CANVAS_HEIGHT = 889;
 const BACKGROUND_WIDTH = 500;
-const BACKGROUND_HEIGHT = 500; */
+const BACKGROUND_HEIGHT = 500; 
+   <canvas id="stage" style="width:190px; height: 18px;" width="190" height="18"></canvas>
+
+*/
 
 Future<Null> exec() async {
   var canvas = dom.querySelector('#stage');
@@ -15,8 +18,9 @@ Future<Null> exec() async {
       options: StageOptions()
         ..backgroundColor = Color.White
         ..renderEngine = RenderEngine.WebGL);
-  var renderLoop = new RenderLoop();
-  renderLoop.addStage(stage);
+ 
+ RenderLoop()
+  ..addStage(stage);
 
   stage.addChild(Clock());
 }

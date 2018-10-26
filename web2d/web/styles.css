@@ -1,6 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto);
-
-html, body, .stage--fullscreen {
+html, bod, .stage--fullscreen {
     width: 100%;
     height: 100%;
     margin: 0;
