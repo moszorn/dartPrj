@@ -5,7 +5,7 @@ Numbers :  Both int and double are subtypes of num (An integer or floating-point
   int : -2^63  ~  2^63 -1
   double:  (double-precision) floating-point number
 
-Integers are numbers without a decimal point.If a number includes a decimal, it is a double.
+Integers are numbers without a decimal point. If a number includes a decimal, it is a double.
   
 int x = 1;
 int hex = 0xDEADBEEF;
@@ -25,9 +25,11 @@ Strings
 
 A Dart string is a sequence of UTF-16 code units.
 In Dart, runes are the UTF-32 code points of a string.
+
+
 Because a Dart string is a sequence of UTF-16 code units, expressing 32-bit Unicode values within a string requires special syntax.
-對於Unicode code point 用 \uXXXX 呈現, XXXX表 4個 16進制數值
-不足4個16進制,用 \u{xxxxx} emoji
+對於Unicode code point 用 \uXXXX 呈現, \u2665 => ♥ 
+要指定多於或少於4個十六進制數字(不足4個16進制)，請將值放在大括號中。,用 \u{xxxxx} emoji
 
 
 
