@@ -181,6 +181,7 @@ void string_type(){
   print("This is $str");
   print("This is ${str.toUpperCase()}");
 
+//triple quote 
   var mulStr1 = '''You can create
 multi-line strings like this one.
 ''';
