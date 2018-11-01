@@ -27,6 +27,7 @@ class Impostor implements Person {
 String greetBob(Person person) => person.greet('Bob');
 
 main(List<String> arguments) {
+  about_runes_type();
  // string_type();
 //map_type();
 //positional_positional_parameters();
@@ -124,7 +125,7 @@ class Line {
    
  */
 void about_runes_type(){
-  var clapping = '\{1f44f}';
+  var clapping = ' \u{1f44d}';
   print(clapping);
   print(clapping.codeUnits);
   print(clapping.runes.toList());
@@ -132,7 +133,7 @@ void about_runes_type(){
   Runes runes = new Runes(clapping);
   print(new String.fromCharCodes(runes));
 
-  Runes runes2 = new Runes('\u2265 \u{1f605} \u{1f60e} \u{1f596} \u{1f44d} \u{fff}');
+  Runes runes2 = new Runes('\u2265 \u{1f605} \u{1f60e} \u{1f596} \u{1f44d} \ufffd');
   print(new String.fromCharCodes(runes2));
 
 }

@@ -10,11 +10,15 @@ import 'dart:async';
 
 import 'package:args/args.dart';
 
+import 'package:cmdApp/cmdApp.dart';
+
 const lineNumber = 'line-number';
 
 ArgResults argResults;
 
 void main(List<String> args) {
+  clearScreen();
+
   final ArgParser parser = ArgParser()
     ..addFlag(lineNumber, negatable: false, abbr: 'n');
 
@@ -38,7 +42,8 @@ Future dcat(List<String> paths, bool showLineNumbers) async {
           .openRead()
           .transform(utf8.decoder)
           .transform(const LineSplitter());
-      /* ses two decoders that transform the data before making it available in the await for block. The UTF8 decoder converts the data into Dart strings. LineSplitter splits the data at newlines. */
+      /* ses two decoders that transform the data before making it available in the await for block
+      . The UTF8 decoder converts the data into Dart strings. LineSplitter splits the data at newlines. */
 
       try {
         await for (var line in lines) {
