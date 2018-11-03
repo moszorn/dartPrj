@@ -1,0 +1,32 @@
+
+
+在當前package根目錄執行 bin/foo
+    pub run <executable> [arg1 arg2]
+    pub run foo arg1 arg2
+
+---------------------------------------------
+在 package下但是 package/example/sub 目錄
+
+    pub run example/sub/foo arg1 arge
+
+---------------------------------------------
+不在package 根目錄下執行
+
+
+    pub global run <package>:<executable>
+
+    pub global run lab:main
+
+---------------------------------------------
+在 package下執行 pubspec參考的package執行檔,
+例如當下的 package 是 foo , 要執行 bar package
+
+    pub run foo:bar arg
+
+#執行 foo package 下定義在 pubspec下的 bar 執行檔 
+pub global run foo:bar arg1
+
+
+
+
+

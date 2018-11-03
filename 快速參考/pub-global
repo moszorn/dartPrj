@@ -1,0 +1,73 @@
+====== activate/Deactivating package ======
+所謂的 activate package就是將 package置放到 global的意思
+
+pub global activate <package>        # from pub.dartlang.org
+pub global activate markdown 0.6.0   #指定下載 markdown 0.6.0 version package
+pub global activate foo < 3.0.0      #指定下載  foo version < 3.0.0
+
+
+pub global activate <package> --overwrite  #下載 package,若已經存在於global則覆蓋,原則是 preexisting executable wins .
+
+Globally activate package 時, 是不會自動將可執行檔放置到 bin , 是你必須在執行 global run後才會
+將可執行檔放置到 bin, 若你要在activate package時一併設置執行程式到 cache PATH中,用 --executable=<name> 或 -x <name>
+
+pub global activate foo -x bar -x baz   # adds bar and baz (but not any other executables that foo might define) to your PATH.
+pub global activate foo --executable=bar --executable=baz
+
+
+
+pub global activate -sgit <Git URL>  # from Git repository
+pub global activate --source git <Git URL>   # from Git repository
+EXAMPLE:
+  pub global activate --source git https://github.com/dart-lang/async_await.git
+  pub global activate -sgit https://github.com/dart-lang/async_await.git
+
+pub global activate --source path <path>   # from local machine
+EXAMPLE: 
+  pub global activate --source path ~/dart/stopwatch   
+
+
+pub global deactivate <package>   #從全域將package拿掉,再也無法使用 pub global run 指令了
+
+====== list all globale  activate packagges ======
+pub global list
+
+====== Run script global ======
+pub global run <package>:<executable> [args.....]
+
+EXAMPLE:執行 foo package 下的 bin/bar.dart ,並傳入兩個參數 arg1 arg2
+pub global run foo:bar arg1 arg2
+
+package若是有執行檔,可以宣告在 pubspec 組態中的 executables , 例如 bin/helloworld.dart為一個可執行檔
+會是  
+ name: helloworld
+ ... 
+  ...
+executables: 
+  helloworld:  
+
+假如沒有在 executables列出可執行名單,會降低這個 package的使用性,
+因為你要執行這個package的可執行檔你既無法透過 pub global run 去執行,
+你必須到這個執行黨的當前目錄下執行 
+  dart helloworld.dart
+  pub run ./bin/helloworld.dart
+
+
+
+
+
+
+常用
+註冊 app
+1. 在 package中的 pubspec.yaml中加上  
+  
+  executables:
+    mydart_app: main
+
+    'mydart_app' is the name you want your global executable to have , 
+    'main' is the Dart script in your package`s bin directory that contains the code to run
+
+
+2. pub global activate --source path .
+3. 可以執行 mydart_lab1
+4. 移除 pub global deactivate mydart_lab1

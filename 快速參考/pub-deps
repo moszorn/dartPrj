@@ -1,0 +1,9 @@
+pub deps [--style=<style>]|[-s <style>]
+
+pub deps --style=compact
+pub deps --style=tree
+pub deps --style=list 
+
+pub deps -s compact
+pub deps -s tree
+pub deps -s list
