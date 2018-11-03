@@ -4,13 +4,11 @@ import "dart:math" as math;
 import "dart:convert";
 
 Stream<int> int1SecDelaedGenerator() async* {
-    for(int i = 0 ; i< 10 ; i++)
-    {
-      await Future.delayed(Duration(seconds:1));
-      yield i;    
-    }     
+  for (int i = 0; i < 10; i++) {
+    await Future.delayed(Duration(seconds: 1));
+    yield i;
   }
-
+}
 
 //maxCount (Optional Positonal parameter)
 Stream<int> timeCounter(Duration interval, [int maxCount]) async* {
@@ -18,7 +16,6 @@ Stream<int> timeCounter(Duration interval, [int maxCount]) async* {
 
   //在無窮迴圈中 yield
   while (true) {
-
     //thread sleep
     await Future.delayed(interval);
 
@@ -28,12 +25,14 @@ Stream<int> timeCounter(Duration interval, [int maxCount]) async* {
     if (i == maxCount) break;
   }
 }
+
 /******************************************************************************************** */
 Stream<int> intStreamGenerator(int to) async* {
   for (int i = 1; i <= to; i++) {
     yield i;
   }
 }
+
 Future<int> intStreamMerge(Stream<int> stream) async {
   var sum = 0;
   //透過 await for 將收到的 stream進行合併
@@ -42,6 +41,7 @@ Future<int> intStreamMerge(Stream<int> stream) async {
   }
   return sum;
 }
+
 /******************************************************************************************** */
 Stream<int> errStreamGenerator(int to) async* {
   for (int i = 1; i <= to; i++) {
@@ -52,6 +52,7 @@ Stream<int> errStreamGenerator(int to) async* {
     }
   }
 }
+
 Future<int> sumStreamErr(Stream<int> stream) async {
   var sum = 0;
   try {
@@ -64,133 +65,155 @@ Future<int> sumStreamErr(Stream<int> stream) async {
   }
   return sum;
 }
+
 /******************************************************************************************** */
 final String src = """KJIHGFEDCBA 9876543210""";
 // 產生新的流（Stream),字串相反的流
 Stream<String> source() async* {
   int length = src.length;
-  for(;length-1 >= 0 ; --length )
-    yield src[length-1];
+  for (; length - 1 >= 0; --length) yield src[length - 1];
 }
+
 //將Stream chunk合併成一個新字串
-Stream<String> lines(Stream<String> source) async* { 
-  String str = '';  
-  await for (var chunk in source) {  
-   str += chunk;
+Stream<String> lines(Stream<String> source) async* {
+  String str = '';
+  await for (var chunk in source) {
+    str += chunk;
   }
   yield str;
 }
 /******************************************************************************************** */
 
 class LibStream {
-  
-   static void streamMerge() async {
+  static void awaitForStream() async {
+    //await for 一種用來消費Stream 的 listener
+    await for (var i in timeCounter(Duration(milliseconds: 800), 5)) {
+      print(i);
+    }
+  }
 
-     //方法一
-     //var stream = intStreamGenerator(10);
-     //var sum = await intStreamMerge(stream);
+  static void listenStream() async {
+    //listen 一種用來觸發Stream 的機制
+    timeCounter(Duration(milliseconds: 600), 5).listen((i) => print(i));
+  }
 
-     //方法二
-    intStreamMerge(intStreamGenerator(10))
-    .then((sum)=> print('sum = $sum'));
-     
-   }
+  static void streamMerge() async {
+    //方法一
+    //var stream = intStreamGenerator(10);
+    //var sum = await intStreamMerge(stream);
 
-   static streamCounter() async {
-     await for (var i in int1SecDelaedGenerator()){
-       print(i);
-     }
-   }
+    //方法二
+    intStreamMerge(intStreamGenerator(10)).then((sum) => print('sum = $sum'));
+  }
 
-   static asyncErr() async {
-     Stream<int> stream = errStreamGenerator(10);
-     int sum = await sumStreamErr(stream);
-     print('sum = $sum');
-   }
+  static streamCounter() async {
+    await for (var i in int1SecDelaedGenerator()) {
+      print(i);
+    }
+  }
 
-   static line() async{
-      //source().forEach((o)=>print(o));
-       lines(source()).forEach(stdout.writeln);
-      // source().map((d)=> '這是'+d).take(14).forEach(stdout.writeln);
-   }
+  static asyncErr() async {
+    Stream<int> stream = errStreamGenerator(10);
+    int sum = await sumStreamErr(stream);
+    print('sum = $sum');
+  }
 
-   static periodSimpleJob() async {
+  static line() async {
+    //source().forEach((o)=>print(o));
+    lines(source()).forEach(stdout.writeln);
+    // source().map((d)=> '這是'+d).take(14).forEach(stdout.writeln);
+  }
 
-      //每隔 Duration period會出發一個 event stream
-      // computation method , 會收到從0開始累加的整數
-      Stream<int>.periodic(Duration(seconds: 1), (x) => x)
-      .take(10)
-      .forEach(stdout.writeln);
-   }
-   static periodPowJob() async {
-      //每隔 Duration period會出發一個 event stream
-      // computation method , 會收到從0開始累加的整數
-      Stream<num> counter = Stream<double>.periodic(Duration(seconds: 1),  (x) => math.pow(x, 2.0)  ).take(10);
-      counter.forEach(stdout.writeln); 
-   }
+  static periodSimpleJob() async {
+    //每隔 Duration period會出發一個 event stream
+    // computation method , 會收到從0開始累加的整數
+    Stream<int>.periodic(Duration(seconds: 1), (x) => x)
+        .take(10)
+        .forEach(stdout.writeln);
+  }
+
+  static periodPowJob() async {
+    //每隔 Duration period會出發一個 event stream
+    // computation method , 會收到從0開始累加的整數
+    Stream<num> counter =
+        Stream<double>.periodic(Duration(seconds: 1), (x) => math.pow(x, 2.0))
+            .take(10);
+    counter.forEach(stdout.writeln);
+  }
+
   /* 
     To transform the stream events, you can invoke a transforming method 
     such as map() on the stream before listening to it. 
     The method returns a new stream.  
    */
-   static map() async {
-     Stream<int>.periodic(Duration(seconds: 1), (x) => x)
-      .take(10)
-      .map((x) => x * 2)
-      .forEach(stdout.writeln);
-   }
+  static map() async {
+    Stream<int>.periodic(Duration(seconds: 1), (x) => x)
+        .take(10)
+        .map((x) => x * 2)
+        .forEach(stdout.writeln);
+  }
 
+  static expand() async {
+    // 0 的 0次方等於 1 print(math.pow(0, 0));
 
-   static expand() async {
-      // 0 的 0次方等於 1 print(math.pow(0, 0));
-      
-      //針對偶數 chunk進行平方,取10次
-      Stream<int>.periodic(Duration(seconds: 1), (x) => x)
-      .where((x) => x.isEven)
-      .expand((x) => [x, math.pow(x, x)])
-      .take(10)
-      .forEach(stdout.writeln);
-   }
+    //針對偶數 chunk進行平方,取10次
+    Stream<int>.periodic(Duration(seconds: 1), (x) => x)
+        .where((x) => x.isEven)
+        .expand((x) => [x, math.pow(x, x)])
+        .take(10)
+        .forEach(stdout.writeln);
+  }
 
-   //檔案Stream古典pattern
-   static readFile() async {
+  //檔案Stream古典pattern
 
-      Stream<List<int>> content = File('txtfile.txt').openRead();
-  
+  static writeFile() async {
+    IOSink file =
+        File("stream_txt").openWrite(mode: FileMode.append, encoding: utf8);
+    file.add(utf8.encode("hello world ${DateTime.now().toIso8601String()}\n"));
+    await file.flush();
+    await file.close();
+  }
+
+  static listenReadStream() async {
+    Stream<List<int>> file = File('stream_txt').openRead();
+    file.transform(utf8.decoder).transform(const LineSplitter()).listen(
+        (chunk) => print(chunk),
+        onDone: () => print("Done reading file"),
+        onError: (e) => print(e.toString()));
+
+    //底下會Exception , 因為這個Stream 屬於一次性的Stream
+    //要重覆使用一次性Stream 用 asBroadcastStream() 轉成 Broadcast stream
+    file.listen((byte) => stdout.write(byte));
+  }
+
+  static asBroadcastStream() async {
+    Stream<List<int>> file = File('stream_txt').openRead().asBroadcastStream();
+
+    file.transform(utf8.decoder).transform(const LineSplitter()).listen(
+        (chunk) => print(chunk),
+        onDone: () => print("Done reading file"),
+        onError: (e) => print(e.toString()));
+
+    //底下會Exception , 因為這個Stream 屬於一次性的Stream
+    //要重覆使用一次性Stream 用 asBroadcastStream() 轉成 Broadcast stream
+    file.listen((byte) => stdout.write(byte));
+  }
+
+  static readFile() async {
+    Stream<List<int>> content = File('txtfile.txt').openRead();
+
     await content
-      .transform(utf8.decoder)
-      .transform(LineSplitter())
-      .forEach(stdout.writeln);
-   }
+        .transform(utf8.decoder)
+        .transform(LineSplitter())
+        .forEach(stdout.writeln);
+  }
 
-   static counterBydelayStream() {
+  static counterBydelayStream() {
     stdout.writeln('程式開始');
-    timeCounter(Duration(milliseconds: 500),5).forEach(stdout.write);
+    timeCounter(Duration(milliseconds: 500), 5).forEach(stdout.write);
     stdout.writeln('程式結束');
-   }
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*
  == https://www.dartlang.org/tutorials/language/streams ==

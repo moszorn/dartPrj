@@ -12,8 +12,8 @@ Future asyncError() async {
 
 Future asyncValue() async => 'value';
 
-Future afterTwoThings(Future first, Future second) {
-  return Future.await([first,second]);
+Future afterTwoThings(Future first, Future second) async{
+ // return Future.await([first,second]);
 }
 
 

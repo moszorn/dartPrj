@@ -5,6 +5,7 @@ export 'src/lib_err_handle.dart';
 export 'src/lib_file.dart';
 export 'src/lib_http.dart';
 export 'src/lib_stream.dart';
+export 'src/lib_future.dart';
 export 'src/utils.dart';
 export 'src/socket/socket_client.dart';
 export 'src/socket/socket_server.dart';
