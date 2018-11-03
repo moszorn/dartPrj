@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'dart:async';
 
 const int PORT = 3000;
-void start() {
+void udp_start() {
   print('UDP Server listen on port $PORT\n');
-  RawDatagramSocket.bind(InternetAddress.LOOPBACK_IP_V4, PORT)
+  RawDatagramSocket.bind(InternetAddress.loopbackIPv4, PORT)
       .then((RawDatagramSocket udpSocket) {
     udpSocket.listen((RawSocketEvent event) {
       if (event == RawSocketEvent.READ) {
@@ -16,7 +16,7 @@ void start() {
   });
 }
 
-send(String msg) {
+udp_send(String msg) {
   List<int> payload = utf8.encode(msg);
 
   RawDatagramSocket.bind(InternetAddress.LOOPBACK_IP_V4, PORT)
