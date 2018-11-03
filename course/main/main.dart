@@ -33,7 +33,11 @@ import 'package:course/course.dart';
     //lib_httpServerSocket();
     //lib_OnlyPostHttpServer();
 
+    //LibFuture.loadStringBlock();
+    //LibFuture.loadStringNonBlock();
 
+      //LibStream.awaitForStream();
+      //LibStream.listenStream();
     //LibStream.streamMerge();
     //LibStream.streamCounter();
     //LibStream.asyncErr();
@@ -42,6 +46,9 @@ import 'package:course/course.dart';
     // LibStream.periodPowJob();
     //LibStream.map();
     //LibStream.expand();
+    //LibStream.writeFile();
+    //LibStream.listenReadStream(); 
+    //LibStream.asBroadcastStream();
     //LibStream.readFile();
     //LibStream.counterBydelayStream();
 }
