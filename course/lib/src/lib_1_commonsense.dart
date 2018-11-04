@@ -90,6 +90,7 @@ class LibCommonSense{
 
 //In Dart, string is a sequence of UTF-16 code units.
 //In Dart,  runes are the UTF-32 code points of a string.
+//Dart 中 runes 是UTF-32字符集的string 對象。codeUnitAt 和 codeUnit 用來獲取UTF-16字符集的字符。使用runes 來獲取UTF-32字符集的字符。
 //Dart 字串為一個UTF16碼點組成,要表示字串可用單引,雙引號, 至於跳脫字元用 \
 //  將運算放到字串用 ${expression}
 // $var 直接於字串中印出 var 變數,Dart會直接呼叫物件的toString()
@@ -147,7 +148,17 @@ class LibCommonSense{
       print(rawData);
   }
 
+void aboutString2(){
+  //v2是編譯時期字串, 因此底下是合法的,
+  // const_n , const_b, const_string 都是編譯時就知道的
+  const const_n = 0, const_b = true , const_string = 'string';
+  const v2 = '$const_n $const_b $const_string';
 
+
+  var n = 0, b = true, s = 'string';
+  //底下不允許,因為 n , b ,s 都是運行時期才知道的,而 v1 是編譯時期就必須決定的
+ // const v1 = '$n $b $s';
+}
 
 
 

@@ -10,3 +10,4 @@ export 'src/utils.dart';
 export 'src/socket/socket_client.dart';
 export 'src/socket/socket_server.dart';
 export 'src/socket/udp.dart';
+export 'src/lib_function.dart';

@@ -1,7 +1,21 @@
 ////透過 course.dart 引入 lib/src 下的package
 import 'package:course/course.dart';
 
+class WannabeFunction {
+  call(String a, String b) => '$a $b';
+}
+
  main(List<String> args) async{
+
+   //Dart 語言中為了能夠讓類像函數一樣能夠被調用，可以實現call()方法
+   var wf = WannabeFunction();
+   var out = wf('hi','zorn');
+   print(wf('hi','zorn'));
+  
+  //Error: Getter not found: '$out'
+  // print($out);
+
+  /******************************************************************* */
 
    //Utils.doRepeatJobByPeriod(Duration(seconds: 1), (i)=> print('do job $i'), 5 );
 
@@ -51,4 +65,11 @@ import 'package:course/course.dart';
     //LibStream.asBroadcastStream();
     //LibStream.readFile();
     //LibStream.counterBydelayStream();
+
+     /*
+     var libFun = LibFunction(lib_sortFun);
+     var list = <int>[7,2,5,8,1,12,4];
+     libFun.sortIntList(list);
+     print(list);
+     */
 }
