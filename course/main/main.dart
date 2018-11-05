@@ -41,6 +41,7 @@ class WannabeFunction {
    //LibHandle.handleErrAfterSuccess();
    //LibHandle.chainHandle();
    //LibCommonSense.aboutEnum();
+   //LibCommonSense.characterType();
 
     //lib_startHttpServer();
     //lib_httpServerUp();
@@ -65,6 +66,15 @@ class WannabeFunction {
     //LibStream.asBroadcastStream();
     //LibStream.readFile();
     //LibStream.counterBydelayStream();
+    //LibStream.streamFromIterable();
+    //LibStream.subSetsOfStramData();
+    //LibStream.transformStream();
+    //LibStream.validateStream();
+    //LibStream.singleValueFromStream();
+    //LibStream.streamSubscriptionFromListen();
+    LibStream.unsubscribe();
+
+
 
      /*
      var libFun = LibFunction(lib_sortFun);

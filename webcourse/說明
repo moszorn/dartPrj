@@ -1,0 +1,46 @@
+webdev serve
+
+
+
+
+
+
+
+
+listen() 函數的參數是類型為 EventListener 的_回調函數_。 EventListener 在 dart:html 庫中用 typedef 定義的：
+
+    typedef void EventListener(Event event)
+
+ Event 參數對象包含了 發送該事件的 Event 對象。 例如， Event 對象知道那個元素何時觸發了該 事件。 對於位置相關的事件，例如 鼠標點擊， Event 對象還知道事件發生在哪裡。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

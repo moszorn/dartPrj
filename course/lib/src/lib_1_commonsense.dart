@@ -115,6 +115,29 @@ class LibCommonSense{
     print(new String.fromCharCodes(runes2));
   }
 
+/*
+Dart does not have character types.
+To convert a code point to a string, you use the String constructor String.fromCharCode:
+
+ */
+  static characterType(){
+    //取得字元的 AscII 編號(CharCode):  codeUnitAt
+    //從AscII 編號(CharCode) 轉成字元 : fromCharCode
+    int alpha = "a".codeUnitAt(0),omega = "z".codeUnitAt(0);
+    while(alpha <= omega)
+      stdout.write(String.fromCharCode(alpha++));
+
+      stdout.writeln();
+
+     //從AscII 編號(CharCode) 轉成字元 : fromCharCode
+     Iterable<int> alphas = Iterable.generate(26,(i)=>omega-i);
+     stdout.writeln(String.fromCharCodes(alphas));
+      
+     
+     final list = <int>[87,88,89,90];
+     stdout.write(String.fromCharCodes(list));
+  }
+
 
 //In Dart, string is a sequence of UTF-16 code units.
 //In Dart,  runes are the UTF-32 code points of a string.

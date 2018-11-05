@@ -84,6 +84,10 @@ Stream<String> lines(Stream<String> source) async* {
 }
 /******************************************************************************************** */
 
+//Key concepts
+//  消費Stream (Consuming a stream) : Data is sent out fo stream to StreamSubscriber
+// 注入Stream (Populating a stream) : Data gets into a stream from StreamController
+
 class LibStream {
   static void awaitForStream() async {
     //await for 一種用來消費Stream 的 listener
@@ -213,8 +217,172 @@ class LibStream {
     timeCounter(Duration(milliseconds: 500), 5).forEach(stdout.write);
     stdout.writeln('程式結束');
   }
+/***************************************************** */
+  static streamFromIterable() {
+
+    var data = [1,2,3,4,5,6];
+    Stream<int> stream = Stream.fromIterable(data);
+
+    //use stream`s listen() method to subscribe to the stream
+    stream.listen((value){
+      stdout.write("Received:");
+      stdout.write("$value");
+    });
+  }
+  static firstChunk(){
+    // Future<int> first =  stream.first;
+    Stream.fromIterable([1,2,3,4,5])
+      .first.then((o)=>print('first value: $o'));
+  }
+  static lastChunk(){
+    Stream<int> streams =Stream.fromIterable([1,2,3,4,5]);
+    Future<int> last = streams.last;
+    last.then((o)=> print('last value : $o'));
+  }
+  static isEmpty(){
+    Stream.fromIterable([1,2,3,4,5])
+      .isEmpty.then((bol)=> print('Iterable is empty: ${bol}'));
+  }
+  static streamLength(){
+      Stream.fromIterable([1,2,3,4,5])
+        .length.then((length)=> print('Iterable length: $length'));
+  }
+
+  //The listen function creates a StreamSubscription instance, which is the return value of the listen() function.
+  // StreamSubscription has a number of handlers, namely: 
+  //    onData, onError, onDone , each of these can be assigned via the listen() function .
+  // or later via the returned StreamSubscription object.
+  static streamSubscriptionFromListen(){
+    var streams = Stream.fromIterable([1,2,3,4,5]);
+
+    //you can use the subscription object in the data handler itself.
+    StreamSubscription subscription = streams.listen(null);
+
+
+    //onDone handler is called when there is no more data, and the underlying stream is closed.
+    subscription.onData(print);
+    subscription.onDone(()=> print('done1: success'));
+    subscription.onError((err){
+       //use the subscription object in the data handler itself.
+      print(subscription);
+    });
+
+    //The onDone handler is called when there is no more data, and the underlying stream is closed.
+    Stream.fromIterable([1,2,3,4,5]).listen(
+      (value)=> print,
+      onError: print,
+      onDone: ()=> print('done2: success')
+    );
+  }
+
+  static unsubscribe(){
+       var streams = Stream.fromIterable([1,2,3,4,5]);
+
+    //you can use the subscription object in the data handler itself.
+    // when cancel subscribe , never receives the onDone message
+    StreamSubscription subscription = streams.listen(null);
+    subscription.onData((value){
+      if(value == 3) subscription.cancel();
+      print('receive $value');
+    });
+    // when cancel subscribe , never receives the onDone message
+    subscription.onDone(()=>print('我永遠不會被執行到'));
+
+  }
+
+  //The take(), skip(), takeWhile(), skipWhile(), and where() methods allow you to take a subset of data
+  static subSetsOfStramData(){
+     Stream<int> streams = Stream.fromIterable([1,2,3,4,5,6,7,8,9,10])
+                                  .asBroadcastStream();
+    streams
+      .where((value)=> value % 2 == 0)
+      .listen((value)=> print('where (value % 2): $value'));
+
+    streams
+      .take(3)
+      .listen((value)=> print('take 3 : $value'));
+
+    streams
+      .skip(3)
+      .listen((value)=> print('skip 3 : $value'));
+
+    streams
+      .takeWhile((value)=> value > 7)
+      .listen((value)=> print('takeWhile (value > 7) : $value'));
+
+    streams
+      .skipWhile((value)=> value < 7)
+      .listen((value)=> print('skipWhile (value < 7) : $value'));
+  }
+
+  //validate data returned from stream meets certain conditions or not , return Future<bool>
+  static validateStream(){
+    Stream<int> streams = Stream.fromIterable(const [1,2,3,4,6]).asBroadcastStream();
+
+    streams.any((value)=> value < 5).then((result)=> print("Any less than 5 : $result"));
+    streams.every((value)=> value<5).then((result)=> print("All less than 5 : $result"));
+    streams.contains(5).then((result)=> print('Contain 5 : $result'));
+  }
+
+  /*指對Stream 取出一份 chunk,  */
+  static singleValueFromStream(){
+     var stream = Stream.fromIterable([1,2,7,12,1]);
+     var broadcastStream = stream.asBroadcastStream();
+
+    // 若大於 7的值很多個,會丟出錯誤
+     broadcastStream.singleWhere((value)=> value > 7).then((value)=>print('single value (value > 2) : $value'));
+     //
+     //底下為錯誤
+     //will fail - there is more than one value in the stream
+     //  catchError handler will catch any errors thrown within the then() callback
+    broadcastStream.single
+      .then((value)=> print('single value: $value'))
+      .catchError((err)=> print('EXCEPTION: there is more than one value in the stream'));
+  }
+
+  
+
+
+  //stream`s transform() method ,takes a StreamTransformer instance
+  // StreamTransformer constructor takes a handleData function , which is called for each value passed from the stream .
+  //    you can use modify the vlaue as you wish in handleData funciton, 
+  //    and add ti back to StreamSink which results in the modified value 
+  //    being output on the transform() method`s own stream.
+  //將 CharCode Stream 轉成字母
+  static transformStream(){
+    // ascII 119 (w)
+    // ascII 120 (x)
+    // ascII 121 (y)
+    // ascII 122 (z)
+    // ascII 65,66,67,68,69,70 , A ~ E
+    var stream = Stream.fromIterable([119,120,121,122,65,66,67,68,69,70]);
+
+    var ascTransformer =  const StreamTransformer<int,String>(intToStringTransform);
+    //var ascTransformer =  const StreamTransformer(intToStringTransform);
+
+    stream.transform(ascTransformer)
+      .listen((value)=> print('receive ${value}'));
+
+  }
 }
 
+StreamSubscription<String> intToStringTransform(Stream<int> inputs, boolsink){
+   StreamSubscription<int> subscription;
+   StreamController controller = StreamController<String>(
+     onPause: ()=> print(''),
+     onResume: ()=>print(''),
+     onCancel: ()=> print(''),
+     sync: true
+   );
+  
+    subscription = inputs.listen((data){   
+          controller.add(String.fromCharCode(data));    
+      }, 
+      onError: controller.addError,
+      onDone: controller.close);
+
+    return controller.stream.listen(null);
+}
 /*
  == https://www.dartlang.org/tutorials/language/streams ==
 

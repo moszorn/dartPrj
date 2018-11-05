@@ -21,7 +21,7 @@ void log(String msg) {
 void entry(){
 
   querySelector(_btn).onClick.listen(makeRequestSync);
-  log('hello world 1');
+  log('Book Mark 1');
 
    //onload 非同步載入 portmanteaux.json
    //onload end 非同步載入 portmanteaux.json
@@ -31,11 +31,11 @@ void entry(){
     ..onLoad.listen(processResponse)
     ..onLoadEnd.listen((x)=> requestComplete(ajaxRequest))
     ..send('');
- log('hello world 2');
+ log('Book Mark 2');
 }
 
 void requestComplete(HttpRequest request) {
-   log('hello world 3');
+   log('Book Mark 3');
   switch (request.status) {
     case 200:
       repProcess(request);
