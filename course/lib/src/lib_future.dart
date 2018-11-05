@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'lib_console.dart';
 
+
 //沒有 async
 Future<String> _loadString2() {
   return Future.delayed(Duration(seconds: 2))

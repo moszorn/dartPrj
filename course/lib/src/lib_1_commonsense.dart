@@ -1,3 +1,5 @@
+
+
 import 'dart:io';
 import 'dart:async';
 
@@ -30,6 +32,16 @@ class LibCommonSense{
       double exponents = 1.42e5;
 
   }
+
+  static aboutRadix(){
+    assert(int.parse('42', radix:16) == 66);
+    print(int.parse('42'));
+
+    assert(int.parse('F', radix:16) == 15);
+    print(int.parse('F',radix:16));
+    print(int.parse('f',radix:16));
+  }
+
 
   static aboutCast() {
       int one = int.parse('1'); //String to int
@@ -136,8 +148,71 @@ To convert a code point to a string, you use the String constructor String.fromC
      
      final list = <int>[87,88,89,90];
      stdout.write(String.fromCharCodes(list));
+
+
+      // 獲取一個字符串所有字符的 UTF-16 編碼單元
+      // 有些字符可能需要用兩個編碼單元來表達
+      var codeUnitList = 'Never odd or even'.codeUnits.toList();
+      assert(codeUnitList[0] == 78);
   }
 
+
+
+  //文字數值 指定保留几位小数
+  static toStringAsFixed(){
+      // Specify the number of digits after the decimal.
+        assert(123.456.toStringAsFixed(2) == '123.46');
+  }
+  //文字數值 指定几位有效数字
+  static toStringAsPrecision(){
+    // Specify the number of significant figures.
+    assert(123.456.toStringAsPrecision(2) == '1.2e+2');
+    assert(double.parse('1.2e+2') == 120.0);
+  }
+
+  static stringOperation() {
+    // 檢測一個字符串是否包含另外一個字符串
+    assert('Never odd or even'.contains('odd'));
+
+    // 一個字符串是否以另外一個字符串開始？
+    assert('Never odd or even'.startsWith('Never'));
+
+    // 一個字符串是否以另外一個字符串結束？
+    assert('Never odd or even'.endsWith('even'));
+
+    // 查找一個字符串在另外一個字符串中出現的位置。
+    assert('Never odd or even'.indexOf('odd') == 6);
+
+    // 轉換為大小
+    assert('structured web apps'.toUpperCase() == 'STRUCTURED WEB APPS');
+
+    // 轉換為小寫
+    assert('STRUCTURED WEB APPS'.toLowerCase() == 'structured web apps');
+
+    // 截取一個子字符串
+assert('Never odd or even'.substring(6, 9) == 'odd');
+
+// 使用一個模式來分割字符串
+var parts = 'structured web apps'.split(' ');
+assert(parts.length == 3);
+assert(parts[0] == 'structured');
+
+// 通過下標索引獲取一個字符（String 對象）
+assert('Never odd or even'[0] == 'N');
+
+// 使用 空字符串作為參數調用 split() 函數可以獲取字符串中的
+// 所有單個字符，結果為一個內容為 String 的 list
+for (var char in 'hello'.split('')) {
+  print(char);
+}
+
+    // 獲取一個字符串所有字符的 UTF-16 編碼單元
+    // 有些字符可能需要用兩個編碼單元來表達
+    var codeUnitList = 'Never odd or even'.codeUnits.toList();
+    assert(codeUnitList[0] == 78);
+
+
+  }
 
 //In Dart, string is a sequence of UTF-16 code units.
 //In Dart,  runes are the UTF-32 code points of a string.
@@ -156,6 +231,14 @@ To convert a code point to a string, you use the String constructor String.fromC
       var str = "Hello\" World";
       print("This is $str");
       print("This is ${str.toUpperCase()}");
+
+
+        // Convert an int to a string.
+        assert(42.toString() == '42');
+
+        // Convert a double to a string.
+        assert(123.456.toString() == '123.456');
+
 
       //triple quote 
       var mulStr1 = '''You can create
