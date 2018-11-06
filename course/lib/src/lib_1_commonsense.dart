@@ -100,6 +100,8 @@ class LibCommonSense{
      stdout.writeln();
   }
 
+
+//電腦系統裡面的ASCII碼就是以1個byte為單位儲存字元
 //In Dart, string is a sequence of UTF-16 code units.
 //In Dart,  runes are the UTF-32 code points of a string.
 //Dart 中 runes 是UTF-32字符集的string 對象。codeUnitAt 和 codeUnit 用來獲取UTF-16字符集的字符。使用runes 來獲取UTF-32字符集的字符。
@@ -111,20 +113,21 @@ class LibCommonSense{
 // 字串取得 Runes資訊可以有 codeUnitAt , codeUnit 屬性回傳 16-bit code unit , 
 //     runes屬性取得整個 runes 字串
  static about_runes(){
-   var clapping = '\{1f44f}';
-    print(clapping);
-    print(clapping.codeUnits);
-    print(clapping.runes.toList());
+   //(坑) 注意 {xxxx}是沒意義的, u{xxxx}才是有意義的
+   var clapping = '\u{1f44f}';
+    print(clapping); //👏
+    print(clapping.codeUnits);//[55357, 56399]
+    print(clapping.runes.toList());// [128079]
 
-    Runes runes = new Runes(clapping);
-    print(new String.fromCharCodes(runes));
+    Runes runes = new Runes(clapping);// ,Runes(傳入 {xxxx}是沒意義的,必須傳入 \u{xxxx})
+    print(new String.fromCharCodes(runes));//👏 
 
 //Because a Dart string is a sequence of UTF-16 code units, expressing 32-bit Unicode values within a string requires special syntax.
 //對於Unicode code point 用 \uXXXX 呈現, \u2665 => ♥ 
 //要指定多於或少於4個十六進制數字(不足4個16進制)，請將值放在大括號中。,用 \u{xxxxx} emoji
 
-    Runes runes2 = new Runes('\u2265 \u{1f605} \u{1f60e} \u{1f596} \u{1f44d} \u{fff}');
-    print(new String.fromCharCodes(runes2));
+    Runes runes2 = new Runes('\u{1f44f} \u{1f605} \u{1f60e} \u{1f596} \u{1f44d} \u{fff}');
+    print(new String.fromCharCodes(runes2));//👏 😅 😎 🖖 👍 ࿿ 
   }
 
 /*
@@ -136,6 +139,8 @@ To convert a code point to a string, you use the String constructor String.fromC
     //取得字元的 AscII 編號(CharCode):  codeUnitAt
     //從AscII 編號(CharCode) 轉成字元 : fromCharCode
     int alpha = "a".codeUnitAt(0),omega = "z".codeUnitAt(0);
+    stdout.writeln('character a codeUnit : $alpha');
+    stdout.writeln('character z condUnit : $omega');
     while(alpha <= omega)
       stdout.write(String.fromCharCode(alpha++));
 

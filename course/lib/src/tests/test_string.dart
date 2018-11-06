@@ -1,21 +1,41 @@
-import 'package:course/course.dart';
+import 'dart:io';
 import 'package:test/test.dart';
 
-void main() {
-  test('poc', () {
+
+void testString() {
+  stdout.writeln("String");
+  test('codeUnitAt(0)', (){
+     expect("a".codeUnitAt(0)==97, true);
+     expect("A".codeUnitAt(0)==65, true);
+  });
+
+  test('codeUnits',(){
+    var list = <int>[87,88,89,90];    
+    var codeUnits = 'WXYZ'.codeUnits;
+
+    expect(codeUnits[0] == list[0], true);
+    expect(codeUnits[1] == list[1], true);
+    expect(codeUnits[2] == list[2], true);
+    expect(codeUnits[3] == list[3], true);
+    expect(codeUnits == list , false);
+  });
+  test('fromCharCodes ${Iterable.generate(4,(i)=> 87+i)} -> ${String.fromCharCodes([87,88,89,90])}',(){
+    Iterable<int> codes = Iterable.generate(4,(i)=> 87+i);
+    expect(String.fromCharCodes(codes) == "WXYZ", true);
+  });
+
+  
+
+   test('isEmpty', () {
     //expect(calculate(), 42);
-
-
     expect('  hello  '.trim() == 'hello', true);
-
     // 正確: 檢測字符串是否為空
     expect(''.isEmpty, true);
-
     //錯誤: 檢測字符串是否為空   
     //expect(!'  '.isEmpty, false);
   });
 
-  test('String 是不可變對象，所以你只能創建 String 對象而無法修改他們', () {
+  test('replaceAll', () {
     var greetingTemplate = 'Hello, NAME!';
     var greeting = greetingTemplate.replaceAll(new RegExp('NAME'), 'Bob');
     expect(greetingTemplate != greeting, true);
@@ -31,7 +51,8 @@ void main() {
         expect(sb.toString() == 'use StringBuffer a/b/A/B.', true);
   });
 
-  test('regexp',(){
+
+  test('RegExp',(){
     var mary = '我今年十歲',john='my birthday is 20/7';
     var checker = RegExp(r'\d+');
     expect(mary.contains(checker) , false);
@@ -49,5 +70,3 @@ void main() {
      expect(matchs.last.group(0), '20');
   });
 }
-
-

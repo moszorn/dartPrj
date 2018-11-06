@@ -40,7 +40,8 @@ main(List<String> args) async {
   //LibCommonSense.aboutEnum();
   //LibCommonSense.characterType();
   //LibCommonSense.aboutRadix();
-
+  //LibCommonSense.about_runes();
+  LibCommonSense.characterType();
   //lib_startHttpServer();
   //lib_httpServerUp();
   //lib_httpServerSocket();

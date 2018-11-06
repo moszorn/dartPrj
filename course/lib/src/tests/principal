@@ -1,0 +1,18 @@
+"Arrange" :初始化物件、要用到的參數設定(包含輸入及要輸出的期望結果)以及建立要模擬的物件或是存根(Stub)。 
+"Act" :呼叫要測試的單元(通常是以方法為單位)。 
+"Assert" :驗證結果，能驗證的情況又分三種，分別為驗證回傳值、改變系統狀態以及交互測試。 
+
+
+//arrage   
+    var first = 1;
+    var second = 2;
+ 
+ //準備預期傳回的結果
+    var expected = 3;
+    Calculator sut = new Calculator();
+
+ //act
+    var actual = sut.Add(first, second);
+
+ //assert
+    Assert.AreEqual(expected, actual);
