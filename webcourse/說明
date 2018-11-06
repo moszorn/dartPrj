@@ -4,11 +4,7 @@ webdev serve
 當所需要的屬性不可用或者不方便使用的話，
 可以用 Element 物件的 attributes 屬性。 
 屬性為一個 Map<String, String> 物件， key 為 attribute 的名字。 
-    Example:
-        attrs = {
-            "visibility": true
-        }
-
+    
 
 
 
