@@ -180,7 +180,12 @@ class LibStream {
 
   static listenReadStream() async {
     Stream<List<int>> file = File('stream_txt').openRead();
-    file.transform(utf8.decoder).transform(const LineSplitter()).listen(
+
+    // 转换器 UTF8.decoder 把 Stream<List<int>> 转换为 一个 Stream<String>
+    //然后用  LineSplitter 把 Stream<String> 转换为 Stream<List<String>> ]。
+    file.transform(utf8.decoder)
+        .transform(const LineSplitter())
+        .listen(
         (chunk) => print(chunk),
         onDone: () => print("Done reading file"),
         onError: (e) => print(e.toString()));

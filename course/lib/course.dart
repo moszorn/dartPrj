@@ -1,6 +1,8 @@
 export 'src/tests/test_string.dart';
 export 'src/tests/test_list.dart';
 export 'src/tests/test_set.dart';
+export 'src/tests/test_URI.dart';
+export 'src/tests/test_DateTime.dart';
 
 export 'src/lib_1_commonsense.dart';
 export 'src/lib_collection.dart';
@@ -15,4 +17,6 @@ export 'src/socket/socket_client.dart';
 export 'src/socket/socket_server.dart';
 export 'src/socket/udp.dart';
 export 'src/lib_function.dart';
+
+export 'src/lib_overwrite_hashcode.dart';
 

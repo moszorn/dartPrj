@@ -41,7 +41,7 @@ main(List<String> args) async {
   //LibCommonSense.characterType();
   //LibCommonSense.aboutRadix();
   //LibCommonSense.about_runes();
-  LibCommonSense.characterType();
+  //LibCommonSense.characterType();
   //lib_startHttpServer();
   //lib_httpServerUp();
   //lib_httpServerSocket();
@@ -49,6 +49,7 @@ main(List<String> args) async {
 
   //LibFuture.loadStringBlock();
   //LibFuture.loadStringNonBlock();
+  LibFuture.waitAllFuture();
 
   //LibStream.awaitForStream();
   //LibStream.listenStream();
@@ -72,6 +73,8 @@ main(List<String> args) async {
   //LibStream.singleValueFromStream();
   //LibStream.streamSubscriptionFromListen();
   //LibStream.unsubscribe();
+
+  LibOverwriteHashCode.use();
 
   /*
      var libFun = LibFunction(lib_sortFun);
