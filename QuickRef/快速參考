@@ -136,6 +136,7 @@ Usefule Shortcuts :   MAC https://defkey.com/visual-studio-code-mac-shortcuts
 (*)cmd + k , cmd + w (close all)
 (*)cmd + k , p \then\ cmd + v. (複製當前檔案所在路徑)
 (*)cmd + k , r (檔案總管/Finder 開啟當前當按所在目錄)
+(*)cmd + w 將當前 Tab 關閉
 (*) 註解/取消註解
   cmd + k , cmd + c / u (註解/取消註解 選取區塊. //)
   cmd + /   (註解toggle, 可針對單行,或區塊. //)

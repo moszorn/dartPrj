@@ -4,7 +4,9 @@ void main() {
   //testString();
   //testSet();
   //testURI();
-  testDateTime();
+  //testDateTime();
+
+  testMath();
 }
 
 
