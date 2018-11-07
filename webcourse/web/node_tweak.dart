@@ -30,7 +30,23 @@ void addNode(){
 }
 
  btn2Handler(MouseEvent e){
-        var newDiv = DivElement() ..text='I am new div' ..style.backgroundColor ='#000' ..style.color = '#fff' ..id='newdiv';
+      
+       /* 
+          var newDiv = Element.tag('DIV')
+              ..text = 'I AM NEW DIV'
+              ..id = 'newdiv'
+              ..style.background ='#000'
+              ..style.color = '#fff' ; 
+        */
+
+
+          var newDiv = Element.tag('DIV')
+                ..text = 'I AM NEW DIV'
+                ..id = 'newdiv';
+            newDiv.style 
+                  ..background = '#000' 
+                  ..color='#fff';
+
         querySelector('#div3').replaceWith(newDiv);
         btn2_listener.cancel();     
  }

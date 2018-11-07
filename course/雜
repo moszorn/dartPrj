@@ -44,6 +44,7 @@ Windows
   ctrl +  alt + k/j/l
 -------------------------------------------------------------------------------
 Usefule Shortcuts :   MAC https://defkey.com/visual-studio-code-mac-shortcuts
+              https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf
 (*) cmd + ,           ( 快速開啟 VS code setting )
 (*) cmd + k , cmd + s ( 快速開啟 VS code short cut setting )
 (*) cmd + shift + p (萬能找)
@@ -71,6 +72,7 @@ Usefule Shortcuts :   MAC https://defkey.com/visual-studio-code-mac-shortcuts
 (*) cmd + < 移到行頭
 (*) cmd + i 選取整行
 (*) cmd + x  (剪下游標停著處的一整行line)
+(*) cmd + shift + k (刪除整行)
 (*) cmd + ]/[  (整行往左,往右移縮排)
 (*) option + <  游標移到上(左邊)一個字
 (*) option + >  游標移到下(右邊)一個字

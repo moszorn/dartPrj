@@ -1,5 +1,6 @@
 webdev serve
 
+html5 dart sample : http://www.dartlang.cc/samples/
 
 當所需要的屬性不可用或者不方便使用的話，
 可以用 Element 物件的 attributes 屬性。 
