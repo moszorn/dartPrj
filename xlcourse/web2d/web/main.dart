@@ -10,7 +10,7 @@ import 'dart:async';
 //import 'package:web2d/sample/officialScalingStage.dart' as official;
 //import 'package:web2d/sample/officialAnimatableTween.dart' as official;
 //import 'package:web2d/sample/officialAnimatableDelayedCall.dart' as official;
-import 'package:web2d/sample/officialTranslation.dart' as official;
+//import 'package:web2d/sample/officialTranslation.dart' as official;
 /* 
 import 'package:web2d/sample/.dart' as official;
 import 'package:web2d/sample/.dart' as official;
