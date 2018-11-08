@@ -5,6 +5,9 @@ import "dart:async";
 
 class Utils {
 
+  static  String encodeData(Map data){
+  return data.keys.map((key)=> '${Uri.encodeComponent(key)}=${Uri.encodeComponent(data[key])}').join('&');
+  }
   static toJson(list){
      print( jsonEncode(list) );
   }

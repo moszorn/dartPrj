@@ -17,6 +17,7 @@ Future<String> _loadString1() async {
 }
 
 class LibFuture {
+
   static Future<Function> closureFun(int x) async {
     return (int y) async => x + y;
   }
@@ -45,6 +46,43 @@ class LibFuture {
     result.then((List values){
       values.forEach((v)=> print(v));
     });
+  }
+
+  static Future chainFuture(){
+
+    Function method = () async=> Future.value('after do something result\n\n');
+    method().then(print);
+    stdout.writeln();
+
+     Function expensiveA =  () async => Future.value('A');
+     Function expensiveB =  (v) async => Future.value('$v B');
+     Function expensiveC =  (v) async => Future.value('$v C');
+     Function doSomethingFinal = print;
+
+    
+    expensiveA()
+      .then((v)=>expensiveB(v))
+      .then((v)=>expensiveC(v))
+      .then((v)=>doSomethingFinal(v));
+     
+  }
+
+  static getherFutureResult() {
+    
+     Function choosBestResponse = (List list) => print(list[0]+ ' is best result');
+     Function handleError = print;
+   
+    Future<String> taskA() => Future.value('Result A');
+    Future<String> taskB() => Future.value('Result B');
+    Future<String> taskC() => Future.value('Result C');
+    
+    Future taskD = (() async => Future.value('Result C'))();
+
+     
+
+      Future.wait([taskA(),taskB(),taskC(), (() async => Future.value('Result D'))()])
+             .then((List response) => choosBestResponse(response))
+             .catchError((e)=> handleError(e));
   }
 }
 

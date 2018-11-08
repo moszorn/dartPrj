@@ -1,4 +1,7 @@
-////透過 course.dart 引入 lib/src 下的package
+import 'dart:async';
+import 'dart:io';
+
+///透過 course.dart 引入 lib/src 下的package
 import 'package:course/course.dart';
 
 class WannabeFunction {
@@ -47,7 +50,7 @@ main(List<String> args) async {
   //LibConvert.toJ();
   //LibConvert.u8decode();
   //LibConvert.utf2dart();
-  LibConvert.d2utf();
+  //LibConvert.d2utf();
   //LibHandle.handleErr();
   //LibHandle.handleErrAfterSuccess();
   //LibHandle.chainHandle();
@@ -100,9 +103,10 @@ main(List<String> args) async {
      libFun.sortIntList(list);
      print(list);
      */
+
+   //LibFuture.chainFuture();
+   LibFuture.getherFutureResult();
   
 }
 
-void poc() {
- 
-}
+

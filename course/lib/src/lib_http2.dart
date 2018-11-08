@@ -11,12 +11,22 @@ void responseText(HttpRequest request){
 void responseJson(HttpRequest request){
   request.response
     ..headers.add(HttpHeaders.contentTypeHeader, 'applicaion/json')
-    ..write('{"name":"yama", "status":1}')
-    ..close();
+    ..write('{"name":"yama", "status":1}');
 }
 
 void displayListenOnPort(int port) {
   stdout.writeln('Server listen on $port ....');
+}
+
+void dumpRequestInfo(HttpRequest request) {
+
+  print('got request for ${request.uri.path}'); 
+  Map<String,String> queryParameters = request.uri.queryParameters;
+  if(queryParameters != null) {
+    print('Receive query parameters :');
+    queryParameters.forEach((key,val)=>print(" $key = $val"));
+  }
+        
 }
 
 class LibHttp2 {
@@ -27,10 +37,10 @@ class LibHttp2 {
     print('127.0.0.1:$port/libhttp2');
     HttpServer server = await HttpServer.bind('127.0.0.1',port);
    
-    server.listen((request){
-        
-        print('got request for ${request.uri.path}');
-        
+    server.listen((HttpRequest request){
+
+        dumpRequestInfo(request);
+       
         if(request.uri.path == '/libhttp2')
           responseText(request);
         else 
@@ -47,8 +57,10 @@ class LibHttp2 {
      HttpServer.bind('127.0.0.1', 8889)
       .then((socket){
         displayListenOnPort(port);
-         socket.listen((request){
-            
+         socket.listen((HttpRequest request){
+            dumpRequestInfo( request);
+
+            addCROSHeader(request.response.headers);
             if(request.uri.path == '/libhttp2')
                responseJson(request);
             else
@@ -59,4 +71,12 @@ class LibHttp2 {
 
       });
   }
+}
+
+void addCROSHeader(HttpHeaders headers){
+  headers.add('Access-Control-Allow-Origin', '*');
+  headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  headers.add('Access-Control-Allow-Headers',
+      'Origin, X-Requested-With, Content-Type, Accept');
+
 }
