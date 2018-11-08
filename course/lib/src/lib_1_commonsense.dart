@@ -119,7 +119,7 @@ class LibCommonSense{
     print(clapping.codeUnits);//[55357, 56399]
     print(clapping.runes.toList());// [128079]
 
-    Runes runes = new Runes(clapping);// ,Runes(傳入 {xxxx}是沒意義的,必須傳入 \u{xxxx})
+    Runes runes =  Runes(clapping);// ,Runes(傳入 {xxxx}是沒意義的,必須傳入 \u{xxxx})
     print(new String.fromCharCodes(runes));//👏 
 
 //Because a Dart string is a sequence of UTF-16 code units, expressing 32-bit Unicode values within a string requires special syntax.

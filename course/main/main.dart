@@ -28,12 +28,26 @@ main(List<String> args) async {
 
   //LibFile.fileInCurrentDirectoryMap();
   //LibFile.fileInCurrentDirList();
+  //LibFile.checkSpecifiedDirectory();
+  //LibFile.listenFileRead();
+  //LibFile.writeLog();
 
+  //txtfile.txt 必須置與 main.dart同一個目錄
+  //LibFile.readAsString();
+  //LibFile.readAsLines();
+  //LibFile.readAsBytes();
+  //LibFile.readRaiseError();
+  
   //txtfile.txt 必須置與 main.dart同一個目錄
   //LibFile.readFile('txtfile.txt');
   //LibFile.readFile('../.gitignore');
   //LibFile.readFile('../main');
 
+  //LibConvert.j2();
+  //LibConvert.toJ();
+  //LibConvert.u8decode();
+  //LibConvert.utf2dart();
+  LibConvert.d2utf();
   //LibHandle.handleErr();
   //LibHandle.handleErrAfterSuccess();
   //LibHandle.chainHandle();
@@ -46,10 +60,13 @@ main(List<String> args) async {
   //lib_httpServerUp();
   //lib_httpServerSocket();
   //lib_OnlyPostHttpServer();
+  //LibHttp2.runServer8888();
+  //LibHttp2.runServer8889();
+  //LibHttpClient.clientGet();
 
   //LibFuture.loadStringBlock();
   //LibFuture.loadStringNonBlock();
-  LibFuture.waitAllFuture();
+  //LibFuture.waitAllFuture();
 
   //LibStream.awaitForStream();
   //LibStream.listenStream();
@@ -74,7 +91,8 @@ main(List<String> args) async {
   //LibStream.streamSubscriptionFromListen();
   //LibStream.unsubscribe();
 
-  LibOverwriteHashCode.use();
+
+  //LibOverwriteHashCode.use();
 
   /*
      var libFun = LibFunction(lib_sortFun);

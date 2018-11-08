@@ -9,6 +9,7 @@ const int _port = 8090;
 
 Future lib_startHttpServer() async {
    stdout.writeln('[lib_startHttpServer]  Server ($_port) 啟動');
+   
    var server = await HttpServer.bind(InternetAddress.loopbackIPv4, _port);
    await for(var req in server){
      if(req.uri.queryParameters['quit'] != null){
