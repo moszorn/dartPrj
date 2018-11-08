@@ -10,9 +10,9 @@ class WannabeFunction {
 
 main(List<String> args) async {
   //Dart 語言中為了能夠讓類像函數一樣能夠被調用，可以實現call()方法
-  var wf = WannabeFunction();
-  var out = wf('hi', 'zorn');
-  print(wf('hi', 'zorn'));
+  //var wf = WannabeFunction();
+  //var out = wf('hi', 'zorn');
+  //print(wf('hi', 'zorn'));
 
   //Error: Getter not found: '$out'
   // print($out);
@@ -40,7 +40,7 @@ main(List<String> args) async {
   //LibFile.readAsLines();
   //LibFile.readAsBytes();
   //LibFile.readRaiseError();
-  
+
   //txtfile.txt 必須置與 main.dart同一個目錄
   //LibFile.readFile('txtfile.txt');
   //LibFile.readFile('../.gitignore');
@@ -93,7 +93,7 @@ main(List<String> args) async {
   //LibStream.singleValueFromStream();
   //LibStream.streamSubscriptionFromListen();
   //LibStream.unsubscribe();
-
+  LibFuture.streamFromFutures();
 
   //LibOverwriteHashCode.use();
 
@@ -104,9 +104,8 @@ main(List<String> args) async {
      print(list);
      */
 
-   //LibFuture.chainFuture();
-   LibFuture.getherFutureResult();
-  
+  //LibFuture.chainFuture();
+  //LibFuture.getherFutureResult();
+
+   //StreamApplication();
 }
-
-

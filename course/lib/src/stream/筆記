@@ -1,0 +1,12 @@
+Using a StreamController
+
+If the events of your stream comes from different parts of your program,
+and not just from a stream or futures that can traversed by an async function, 
+then use a StreamController to create and populate the stream.
+
+A StreamController gives you a new stream and a way to add events to the stream 
+at any point, and from anywhere. The stream has all the logic necessary to handle 
+listeners and pausing. You return the stream and keep the controller to yourself.
+
+
+

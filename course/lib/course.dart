@@ -24,3 +24,6 @@ export 'src/lib_function.dart';
 
 export 'src/lib_overwrite_hashcode.dart';
 
+
+export 'src/stream/stream_course.dart';
+

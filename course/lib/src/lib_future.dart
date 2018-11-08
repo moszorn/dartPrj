@@ -4,7 +4,6 @@ import 'dart:convert';
 
 import 'lib_console.dart';
 
-
 //沒有 async
 Future<String> _loadString2() {
   return Future.delayed(Duration(seconds: 2))
@@ -17,7 +16,6 @@ Future<String> _loadString1() async {
 }
 
 class LibFuture {
-
   static Future<Function> closureFun(int x) async {
     return (int y) async => x + y;
   }
@@ -38,65 +36,101 @@ class LibFuture {
     print('[loadStringBlock] end load String');
   }
 
-  static void waitAllFuture(){
+  static void waitAllFuture() {
     Future<void> process1 = asycProcess1();
     Future<void> process2 = asycProcess2();
     Future<void> process3 = asycProcess3();
-    Future<List<dynamic>> result = Future.wait([process1, process3,process2]);
-    result.then((List values){
-      values.forEach((v)=> print(v));
+    Future<List<dynamic>> result = Future.wait([process1, process3, process2]);
+    result.then((List values) {
+      values.forEach((v) => print(v));
     });
   }
 
-  static Future chainFuture(){
-
-    Function method = () async=> Future.value('after do something result\n\n');
+  static Future chainFuture() {
+    Function method = () async => Future.value('after do something result\n\n');
     method().then(print);
     stdout.writeln();
 
-     Function expensiveA =  () async => Future.value('A');
-     Function expensiveB =  (v) async => Future.value('$v B');
-     Function expensiveC =  (v) async => Future.value('$v C');
-     Function doSomethingFinal = print;
+    Function expensiveA = () async => Future.value('A');
+    Function expensiveB = (v) async => Future.value('$v B');
+    Function expensiveC = (v) async => Future.value('$v C');
+    Function doSomethingFinal = print;
 
-    
     expensiveA()
-      .then((v)=>expensiveB(v))
-      .then((v)=>expensiveC(v))
-      .then((v)=>doSomethingFinal(v));
-     
+        .then((v) => expensiveB(v))
+        .then((v) => expensiveC(v))
+        .then((v) => doSomethingFinal(v));
   }
 
   static getherFutureResult() {
-    
-     Function choosBestResponse = (List list) => print(list[0]+ ' is best result');
-     Function handleError = print;
-   
+    Function choosBestResponse =
+        (List list) => print(list[0] + ' is best result');
+    Function handleError = print;
+
     Future<String> taskA() => Future.value('Result A');
     Future<String> taskB() => Future.value('Result B');
     Future<String> taskC() => Future.value('Result C');
-    
+
     Future taskD = (() async => Future.value('Result C'))();
 
-     
+    Future.wait([
+      taskA(),
+      taskB(),
+      taskC(),
+      (() async => Future.value('Result D'))()
+    ])
+        .then((List response) => choosBestResponse(response))
+        .catchError((e) => handleError(e));
+  }
 
-      Future.wait([taskA(),taskB(),taskC(), (() async => Future.value('Result D'))()])
-             .then((List response) => choosBestResponse(response))
-             .catchError((e)=> handleError(e));
+  static streamFromFutures() {
+    Future<String> fun1() async {
+      await Future.delayed(Duration(seconds: 2));
+      return "fun1";
+    }
+
+    Future<String> fun2() async {
+      await Future.delayed(Duration(seconds: 6));
+      return "fun2";
+    }
+
+    Future<String> fun3() async {
+      await Future.delayed(Duration(seconds: 10));
+      return "fun3";
+    }
+
+    //List<Future> futures = <Future>[fun1(),fun2(),fun3()];
+    Iterable<Future> results = <Future>[
+      Future.value("result1"),
+      Future.value("result2"),
+      Future.value("result3")
+    ];
+    Iterable<Future> futures = <Future>[fun1(), fun2(), fun3()];
+
+    //報錯:  fromFuture<String>(futures).listen(print);
+    fromFutures(futures).listen(print);
   }
 }
 
-Future<String> asycProcess1(){
- return  Future.delayed(Duration(seconds: 3))
-    .then((_)=> ("Process 1 done"));
+
+//使用這個方法,不要宣告回傳型態( fromFutures<String>(ccc) )
+//直接用  fromFutures(xxx)
+//It’s rare to have an async* function building a stream from nothing. It needs to get its data from somewhere, and most often that somewhere is another stream. 
+Stream<T> fromFutures<T>(Iterable<Future<T>> futures) async* {
+  for (var future in futures) {
+    var result = await future;
+    yield result;
+  }
 }
 
-Future<Null> asycProcess2(){
- return  Future.delayed(Duration(seconds: 5))
-    .then((_)=>null);
+Future<String> asycProcess1() {
+  return Future.delayed(Duration(seconds: 3)).then((_) => ("Process 1 done"));
 }
 
-Future<int> asycProcess3(){
- return  Future.delayed(Duration(seconds: 1))
-    .then((_)=> 3 );
+Future<Null> asycProcess2() {
+  return Future.delayed(Duration(seconds: 5)).then((_) => null);
+}
+
+Future<int> asycProcess3() {
+  return Future.delayed(Duration(seconds: 1)).then((_) => 3);
 }
