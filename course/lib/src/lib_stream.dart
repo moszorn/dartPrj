@@ -371,17 +371,34 @@ class LibStream {
     // ascII 65,66,67,68,69,70 , A ~ E
     var stream = Stream.fromIterable([119,120,121,122,65,66,67,68,69,70]);
 
-    var ascTransformer =  const StreamTransformer<int,String>(intToStringTransform);
-    //var ascTransformer =  const StreamTransformer(intToStringTransform);
-
+    //var ascTransformer =  const StreamTransformer<int,String>(intToStringTransform);
+    var ascTransformer =  const StreamTransformer(intToStringTransform);
+ 
     stream.transform(ascTransformer)
       .listen((value)=> print('receive ${value}'));
 
   }
+
+  static streamTransform2(){
+      var stream = Stream.fromIterable([119,120,121,122,65,66,67,68,69,70]);
+     
+      var trans = StreamTransformer.fromHandlers<int,String>(handleData:(trunk,sink){
+          var ctrl = StreamController();
+          ctrl.add(String.fromCharCode(trunk));
+          return ctrl.stream;
+      });
+
+      stream.transform(trans).listen(print);
+  }
 }
 
-StreamSubscription<String> intToStringTransform(Stream<int> inputs, boolsink){
+
+// int 轉成 字串流轉換器
+StreamSubscription<String> intToStringTransform(Stream<int> inputs,  boolsink){
+ 
    StreamSubscription<int> subscription;
+
+   //同步流產生器
    StreamController controller = StreamController<String>(
      onPause: ()=> print(''),
      onResume: ()=>print(''),
@@ -397,6 +414,27 @@ StreamSubscription<String> intToStringTransform(Stream<int> inputs, boolsink){
 
     return controller.stream.listen(null);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
  == https://www.dartlang.org/tutorials/language/streams ==
 
@@ -430,7 +468,7 @@ await for 結束迴圈的情況有兩種,一種是Stream 資料或事件已經�
 
 
 Stream 可以看成是一種非同步的列舉(iterable  Stream<T>),因此它有一系列的 lamda 方法可用,
-這些發法都是在 iterable上做動作.
+這些方法都是在 iterable上做動作.
 
    Future<int> lastPostive(Stream<int> stream) => stream.lastWhere((x) => x >=0 );
 
