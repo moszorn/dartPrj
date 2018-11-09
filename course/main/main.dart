@@ -4,12 +4,16 @@ import 'dart:io';
 ///透過 course.dart 引入 lib/src 下的package
 import 'package:course/course.dart';
 
+/*
+The call() method is special, in that anyone who defines a call() method is presumed 
+to emulate a function. This allows us to use instances of WannabeFunction as if they were functions that take two integer arguments and return an integer
+ */
 class WannabeFunction {
   call(String a, String b) => '$a $b';
 }
 
 main(List<String> args) async {
-  //Dart 語言中為了能夠讓類像函數一樣能夠被調用，可以實現call()方法
+  //Dart 語言中為了能夠讓建構子函數一樣能夠被調用，可以實現call()方法
   //var wf = WannabeFunction();
   //var out = wf('hi', 'zorn');
   //print(wf('hi', 'zorn'));
@@ -93,7 +97,7 @@ main(List<String> args) async {
   //LibStream.singleValueFromStream();
   //LibStream.streamSubscriptionFromListen();
   //LibStream.unsubscribe();
-  LibFuture.streamFromFutures();
+  //LibFuture.streamFromFutures();
 
   //LibOverwriteHashCode.use();
 
@@ -106,6 +110,9 @@ main(List<String> args) async {
 
   //LibFuture.chainFuture();
   //LibFuture.getherFutureResult();
+
+  //LibTimer.streamTimer();
+  //LibStream.streamProject();
 
    //StreamApplication();
 }

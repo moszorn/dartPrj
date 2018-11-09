@@ -16,6 +16,7 @@ export 'src/lib_httpClient.dart';
 export 'src/lib_convert.dart';
 export 'src/lib_stream.dart';
 export 'src/lib_future.dart';
+export 'src/lib_timer.dart';
 export 'src/utils.dart';
 export 'src/socket/socket_client.dart';
 export 'src/socket/socket_server.dart';

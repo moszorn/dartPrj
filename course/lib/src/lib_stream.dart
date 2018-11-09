@@ -116,6 +116,15 @@ class LibStream {
     }
   }
 
+  static streamProject(){
+    int sec = 1;
+    int trunkToTake = 5;
+    print('project stream every $sec, and take $trunkToTake stream chunk');
+    Stream.periodic(Duration(seconds: sec), (int t) {
+      print('stream project $t');
+    }).take(5).listen((_)=>print);
+  }
+
   static asyncErr() async {
     Stream<int> stream = errStreamGenerator(10);
     int sum = await sumStreamErr(stream);
