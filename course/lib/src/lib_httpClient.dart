@@ -17,8 +17,20 @@ void _sendPost() async{
       ..headers.contentType = ContentType.json
       ..write(jsonEncode(_jsonMap));
 
+    //HttpClientRequest close後才拿得到 response物件
     HttpClientResponse response = await request.close();
     await response.transform((utf8.decoder)).forEach(print);
+}
+
+void sendGetToGoogle() async {
+
+  HttpClientRequest request = 
+      await HttpClient()
+      .getUrl( Uri(host:'www.google.com', scheme: 'https',port: 443, path:'/' ));
+
+    (await request.close())
+    .transform(utf8.decoder)
+    .listen(print);
 }
 
 void sendGet(){

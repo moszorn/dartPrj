@@ -82,7 +82,7 @@ testSet(){
       expect(set1.union(set2).length == 10 , true);
   });
 
-  test('union',(){
+  test('intersection',(){
       var big = <String>['A','B','C','D','E','F'],small=['a','b','C','d','f'];
       var set1 = Set(), 
           set2 = Set();

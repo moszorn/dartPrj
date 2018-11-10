@@ -42,6 +42,7 @@ void testString() {
   });
 
   test('StringBuffer',(){
+    //注意是 StringBuffer 不是 StringBuilder
     var sb = StringBuffer()
               ..write('use StringBuffer ')
               ..writeAll([

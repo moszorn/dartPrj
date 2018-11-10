@@ -58,9 +58,7 @@ Future main(List<String> arguments) async {
 
   if (await FileSystemEntity.isDirectory(searchPath)) {
     final startingDir = new Directory(searchPath);
-    await for (var entity in startingDir.list(
-        recursive: argResults[recursive],
-        followLinks: argResults[followLinks])) {
+    await for (var entity in startingDir.list( recursive: argResults[recursive], followLinks: argResults[followLinks])) {
       if (entity is File) {
         searchFile(entity, searchTerms);
       } else {

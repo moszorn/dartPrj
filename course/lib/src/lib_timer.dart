@@ -37,6 +37,7 @@ class LibTimer{
       .take(60)
       .listen(print);
 
+      //每隔一秒去查看 data這個變數是否已被異動為10
       Timer.periodic(Duration(seconds: 1), (Timer timer){
         print('data = $data');
         if(data == 10){
