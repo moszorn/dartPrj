@@ -168,6 +168,46 @@ class LibFile {
       });
   }
 
+  static processFileException(){
+    RandomAccessFile rdmFile;
+    final String fileName = 'bin/txtfile';
+    print('LibFile - processFileException');
+    try{
+        
+        Uri uri = Uri.file(fileName);
+        File file = File.fromUri(uri);
+
+        
+
+        //open file
+          rdmFile = file.openSync();
+          print('path = ${rdmFile.path}');
+        //read file as byte stream
+          List<int> bytes =rdmFile.readSync(rdmFile.lengthSync());
+        //convert to String
+         String content = String.fromCharCodes(bytes);
+         
+        //print result
+        print('File content: $content');
+    } on ArgumentError catch(ex) {
+        print("Argument error exception");
+    } on UnsupportedError catch(ex){
+        print("URI cannot reference a file");
+    } on FileSystemException catch(ex){
+        print("File doesn`t exist or accessible");
+    } finally {
+      try{
+           if(rdmFile != null ){
+              rdmFile.closeSync();
+           } else {
+             print('File is null');
+           }
+      } on FileSystemException catch (ex) {
+        print("File can`t be close");
+      }
+      
+    }
+  }
 
 }
 
