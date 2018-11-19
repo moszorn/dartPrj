@@ -16,6 +16,45 @@ Future<String> _loadString1() async {
 }
 
 class LibFuture {
+
+  static makeFuture(){
+     Future calc = Future(()=>"hi");
+     calc.then(print);
+  }
+
+  static makeMicroTask(){
+    /*
+    If the result of computation throws, 
+    the returned Future is completed with the error. 
+    If computation creates another Future, 
+    the current one will wait until the new Future is completed 
+    and will then be completed with the same result.
+     */
+    Future calc = Future.microtask(()=>'hi');
+    calc.then(print);
+  }
+
+  void immediatelyFuture(){
+    /*
+     為何要有 future immediately? 
+     The reason for this is that the Future immediately 
+     calls the computation function. The result of the 
+     computation will be returned in the next event-loop iteration.
+     */
+    Future calc = Future.sync(()=>'hi');
+    calc.then(print);
+  }
+
+ void futureError(){
+   try{
+     throw new Error();
+   } on Error catch(ex, stackTrace){
+     Future er = Future.error(ex,stackTrace);
+     er.catchError((err,stack)=>print(err));
+   }
+ }
+
+
   static Future<Function> closureFun(int x) async {
     return (int y) async => x + y;
   }

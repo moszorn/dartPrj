@@ -128,6 +128,8 @@ class LibCommonSense{
 
     Runes runes2 = new Runes('\u{1f44f} \u{1f605} \u{1f60e} \u{1f596} \u{1f44d} \u{fff}');
     print(new String.fromCharCodes(runes2));//👏 😅 😎 🖖 👍 ࿿ 
+    print(new String.fromCharCodes(runes2,2,3));//😅
+    print(new String.fromCharCodes([65,66]));//AB
   }
 
 /*
@@ -136,6 +138,10 @@ To convert a code point to a string, you use the String constructor String.fromC
 
  */
   static characterType(){
+
+    'ABCDwxyz'.split('').forEach((o)=>print('$o = ${o.codeUnitAt(0)}'));
+
+
     //取得字元的 AscII 編號(CharCode):  codeUnitAt
     //從AscII 編號(CharCode) 轉成字元 : fromCharCode
     int alpha = "a".codeUnitAt(0),omega = "z".codeUnitAt(0);
@@ -148,6 +154,7 @@ To convert a code point to a string, you use the String constructor String.fromC
 
      //從AscII 編號(CharCode) 轉成字元 : fromCharCode
      Iterable<int> alphas = Iterable.generate(26,(i)=>omega-i);
+     Iterable.generate(10,(i)=> 'item$i').forEach(print);//item0,...item9
      stdout.writeln(String.fromCharCodes(alphas));
       
      

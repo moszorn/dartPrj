@@ -49,6 +49,8 @@ main(List<String> args) async {
   //LibFile.readFile('txtfile.txt');
   //LibFile.readFile('../.gitignore');
   //LibFile.readFile('../main');
+  //LibFile.processFileException();
+  //LibFile.readFileAsync();
 
   //LibConvert.j2();
   //LibConvert.toJ();
