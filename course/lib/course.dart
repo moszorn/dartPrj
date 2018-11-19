@@ -6,6 +6,9 @@ export 'src/tests/test_DateTime.dart';
 export 'src/tests/test_math.dart';
 export 'src/tests/test_iterator.dart';
 
+export 'src/lib_collection_comparable.dart';
+export 'src/lib_collection_iterable.dart';
+
 export 'src/lib_1_commonsense.dart';
 export 'src/lib_collection.dart';
 export 'src/lib_console.dart';
@@ -16,6 +19,10 @@ export 'src/lib_http2.dart';
 export 'src/lib_httpClient.dart';
 export 'src/lib_convert.dart';
 export 'src/lib_stream.dart';
+export 'src/lib_stream2.dart';
+export 'src/lib_stream_controller.dart';
+export 'src/lib_stream_sink.dart';
+
 export 'src/lib_future.dart';
 export 'src/lib_timer.dart';
 export 'src/utils.dart';
