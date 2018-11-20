@@ -7,7 +7,15 @@ export 'src/tests/test_math.dart';
 export 'src/tests/test_iterator.dart';
 
 export 'src/lib_collection_comparable.dart';
-export 'src/lib_collection_iterable.dart';
+export 'src/lib_collection_iterable_iterator.dart';
+export 'src/lib_collection_bidirectionaliterator.dart';
+export 'src/lib_collection_custom_list.dart';
+export 'src/lib_collection_linklist.dart';
+export 'src/lib_collection_set.dart';
+export 'src/lib_collection_hashset.dart';
+export 'src/lib_collection_queue.dart';
+export 'src/lib_collection_map.dart';
+export 'src/lib_collection_hashmap.dart';
 
 export 'src/lib_1_commonsense.dart';
 export 'src/lib_collection.dart';

@@ -75,7 +75,22 @@ main(List<String> args) async {
 
   //LibCollectionComparable.sortUseComparable();
   //LibCollectionComparable.sortUseComparator();
+ 
+ // LibCollectionBidirection.backward();
 
+//LibCollectionCustomList.custom1();
+//LibCollectionCustomList.list2Map();
+//LibCollectionCustomList.randomShuffle();
+
+  //LibCollectionLinkList.run1();
+  //LibCollectionSet.run1();
+  //LibCollectionSet.intersection();
+  //LibCollectionSet.union();
+    //LibCollectionSet.difference();
+
+ //LibCollectionQueue.run1();
+//LibCollectionMap.run1();
+LibCollectionHashMap.run1();
 
   //LibFuture.loadStringBlock();
   //LibFuture.loadStringNonBlock();
@@ -134,4 +149,7 @@ main(List<String> args) async {
   //LibStream.streamProject();
 
    //StreamApplication();
+
+
+   
 }

@@ -1,4 +1,10 @@
 
+
+
+
+
+
+
 /*
   IterableBase , IterableMixin class 實作 Iterator interface , if you plan to create your own implementation of the Iterable interface , 
   you need to extend one of the them.
@@ -130,4 +136,23 @@ void lazyIterable(){
   iterable.forEach((int i){
     print("Received $i");
   });
+}
+
+
+//Always initialize the Iterator with the moveNext method to prevent unpredictable results.
+void iteratorJob1(){
+  print('lib_collection_iterable_iterator.dart - iteratorJob1()');
+  List<String> colors = ['red','green','blue'];
+  Iterator<String> iter = colors.iterator;
+  do{
+    print(iter.current);
+  }while(iter.moveNext());// Error 
+}
+
+void iteratorJob2(){
+  var colors = ['green','red','blue'];
+  var iterator = colors.iterator;
+  //Always initialize the Iterator with the moveNext method to prevent unpredictable results.
+  while(iterator.moveNext())
+    print(iterator.current);
 }
