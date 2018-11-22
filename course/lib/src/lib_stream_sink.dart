@@ -1,7 +1,7 @@
 /*
  Sink calss represents a generic interface for data receivers .
 
- EventSink class uses the 'add' method of the Sink class to send a data event to stream , as well ass the 'close' method to send a done event.
+ EventSink class uses the 'add' method of the Sink class to send a data event to stream , as well as the 'close' method to send a done event.
                  uses 'addError' method belongs to the EventSink class  that sends an asynchronous error to a stream .
  */
 

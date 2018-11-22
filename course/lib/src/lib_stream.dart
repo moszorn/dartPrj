@@ -417,7 +417,10 @@ StreamSubscription<String> intToStringTransform(Stream<int> inputs,  boolsink){
 
 
 
-
+Stream<T> streamstreamFromFutures<T>(Iterable<Future<T>> futures) async* {
+  for (var future in futures)  
+    yield await future;
+}
 
 
 

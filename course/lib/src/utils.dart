@@ -28,4 +28,14 @@ class Utils {
           if(time++ == max_time) break;
       }
   }
+
+  static void doRepeatJobByPeriod2(){
+    _doRepeatJobBySpecificTimer(Duration(seconds: 1), print , 5);
+  }
+  static void _doRepeatJobBySpecificTimer(Duration duration,Function fun, [int max_time]){
+     Timer.periodic(const Duration(seconds: 1), (timer){
+       if(max_time == timer.tick ) timer.cancel();
+       fun(timer.tick);
+     });
+  }
 }

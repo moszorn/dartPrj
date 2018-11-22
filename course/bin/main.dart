@@ -5,5 +5,5 @@ import 'dart:io';
  */
 main(List<String> arguments) {
   
-
+  LibOo.car_extend_generic_function();
 }

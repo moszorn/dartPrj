@@ -11,6 +11,7 @@ Stream<int> timedCounter(Duration interval, [int maxCount]) {
   var controller = StreamController<int>();
   int counter = 0;
 
+  //timer: for cancel purpose
   void tick(Timer timer) {
     counter++;
     controller.add(counter); // Ask stream to send counter values as event.
@@ -27,9 +28,9 @@ Stream<int> timedCounter(Duration interval, [int maxCount]) {
   /*
   The periodic takes two arguments, a duration and a function to run.
   The duration must be an instance of Duration. 
-  The callback must take a single parameter, the timer itself.
+  The callback must take a single parameter, the timer itself (for cancel purpose).
    */
-  //讓streamsonctoller持續產生chunk
+  //讓streamsonctoller持續產生chunk (start streaming)
   Timer.periodic(interval, tick); // BAD: Starts before it has subscribers.
   return controller.stream;
 }

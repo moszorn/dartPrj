@@ -173,3 +173,8 @@ Future<Null> asycProcess2() {
 Future<int> asycProcess3() {
   return Future.delayed(Duration(seconds: 1)).then((_) => 3);
 }
+
+Stream<T> streamFromFutures<T>(Iterable<Future<T>> futures) async* {
+  for (var future in futures)  
+    yield await future;
+}

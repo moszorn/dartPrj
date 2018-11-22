@@ -30,6 +30,8 @@ export 'src/lib_stream.dart';
 export 'src/lib_stream2.dart';
 export 'src/lib_stream_controller.dart';
 export 'src/lib_stream_sink.dart';
+export 'src/lib_stream_transformation1.dart';
+export 'src/lib_stream_transformation2.dart';
 
 export 'src/lib_future.dart';
 export 'src/lib_timer.dart';
@@ -44,3 +46,5 @@ export 'src/lib_overwrite_hashcode.dart';
 
 export 'src/stream/stream_course.dart';
 
+
+export 'src/lib_oo.dart';

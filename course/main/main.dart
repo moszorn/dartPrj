@@ -22,7 +22,7 @@ main(List<String> args) async {
   // print($out);
 
   /******************************************************************* */
-
+Utils.doRepeatJobByPeriod2();
   //Utils.doRepeatJobByPeriod(Duration(seconds: 1), (i)=> print('do job $i'), 5 );
 
   //LibConsole.clearScreen();
@@ -90,7 +90,7 @@ main(List<String> args) async {
 
  //LibCollectionQueue.run1();
 //LibCollectionMap.run1();
-LibCollectionHashMap.run1();
+//LibCollectionHashMap.run1();
 
   //LibFuture.loadStringBlock();
   //LibFuture.loadStringNonBlock();
@@ -119,6 +119,8 @@ LibCollectionHashMap.run1();
   //LibStream.singleValueFromStream();
   //LibStream.streamSubscriptionFromListen();
   //LibStream.unsubscribe();
+  //LibStreamTransform1.run();
+  //LibStreamTransform2.run();
 
   //LibStream2.future2Stream();
   //LibStream2.iterable2Stream();

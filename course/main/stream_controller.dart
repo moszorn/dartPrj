@@ -15,11 +15,11 @@ Stream<int> timedCounterGenerator(Duration interval, [int maxCount]) async* {
 
 // #docregion stream-from-futures
 Stream<T> streamFromFutures<T>(Iterable<Future<T>> futures) async* {
-  for (var future in futures) {
-    var result = await future;
-    yield result;
-  }
+  for (var future in futures)  
+    yield await future;
 }
+
+
 // #enddocregion stream-from-futures
 
 // #docregion better-stream
@@ -39,10 +39,12 @@ Stream<int> timedCounter(Duration interval, [int maxCount]) {
     }
   }
 
+  //start streaming
   void startTimer() {
     timer = Timer.periodic(interval, tick);
   }
 
+  //close streaming
   void stopTimer() {
     if (timer != null) {
       timer.cancel();
@@ -61,25 +63,33 @@ Stream<int> timedCounter(Duration interval, [int maxCount]) {
 // #enddocregion better-stream
 
 void main() {
-//  showBasicUsage();
-//  useMap();
-//  useWhere();
-//  useTransform();
-//  useExpand();
-//  useGenerator();
+  //  showBasicUsage();
+  //  useMap();
+  //  useWhere();
+  //  useTransform();
+  //  useExpand();
+  //  useGenerator();
   useStreamFromFutureGenerator();
   // useTake();
   // demoPause();
 }
 
-void showBasicUsage() {
+void showBasicUsage() async{
   // #docregion basic-usage
   var counterStream =
       Stream<int>.periodic(Duration(seconds: 1), (x) => x).take(15);
   // #enddocregion basic-usage
 
   // #docregion basic-for-each
-  counterStream.forEach(print); // Print an integer every second, 15 times.
+
+  // Print an integer every second, 15 times.
+  //way1.
+  //counterStream.listen(print);
+  //way2.
+  counterStream.forEach(print); //return Future<dynamic>
+  //way3
+  await for(var i  in counterStream) print(i);
+
   // #enddocregion basic-for-each
 }
 
