@@ -17,6 +17,51 @@ Future afterTwoThings(Future first, Future second) async{
 }
 
 
+/****************************************************************************************************************************************** */
+var port = 8990;   
+   var server = await HttpServer.bind(InternetAddress.loopbackIPv4 , port);
+   await for(var request in server) {  
+
+      //request.method
+      //request.headers.contentType
+      //request.uri
+      //request.header
+
+
+       Map<String,String> queryParameters = request.uri.queryParameters;
+      if(queryParameters != null) {
+        print('Receive query parameters :');
+        queryParameters.forEach((key,val)=>print(" $key = $val"));
+      }
+
+      var json = await request.transform(utf8.decoder).join();
+      var dartObj = jsonDecode(json) as Map;
+
+        request.response.headers.add('Access-Control-Allow-Origin', '*');
+        request.response.headers.add('Access-Control-Allow-Methods', 'POST, OPTIONS');
+        request.response.headers.add('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+        request.response.headers.add(HttpHeaders.contentTypeHeader, 'applicaion/json');
+
+        //Response加上 ContentType
+        request.response.headers.contentType = ContentType('text','plain');
+
+      request.response ..statusCode = HttpStatus.ok
+                      .. write('hello world');
+
+      //重要
+      if(request.uri.queryParameters['quit'] != null) {
+        await server.close(); //關閉
+        }
+   } 
+
+   var server1 = await HttpServer.bind(InternetAddress.loopbackIPv4, port);
+   server1.forEach((socket) async{
+     
+   });
+
+   var server3 = await HttpServer.bind(InternetAddress.loopbackIPv4, port);
+   server3.listen( handleRequest, onError: (e)=> print(e));
+   
 
 
 
@@ -29,11 +74,9 @@ Future afterTwoThings(Future first, Future second) async{
 
 
 
+/********************************************************************************************************************************************************************************************************************************** */
 
-
-
-
-Choosing the right collectio : 
+Choosing the right collection : 
   1. List , Set (LinkedHashSet) , Map (LinkedHashMap) classes are perfect choices for general purposes .
   2. Choosing a class implements the minimum functionality that you require. Don`t choose a class that supports sorting if you don`t actually need it .UnsupportedError
 

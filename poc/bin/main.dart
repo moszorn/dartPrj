@@ -2,10 +2,11 @@
 
 import 'dart:async';
 import 'dart:math' as math;
-import 'package:poc/poc.dart' as poc;
-
 import 'dart:io';
 import 'dart:convert';
+import 'package:poc/poc.dart' as poc;
+
+
 
 /*
    Windows: pub.bat run poc:main.dart
@@ -18,30 +19,85 @@ import 'dart:convert';
       bool sync: false}
 
  */
-main(List<String> arguments) async{
+void requestHandler(HttpRequest request) async {
 
-   
-  StreamSubscription subcriber = connect().listen((data)=> print('receive $data'));
-      
-  Future.doWhile(() async {
+   HttpResponse rp = request.response;
+   print('server receive request at path ${request.uri.path}');
+   if(request.uri.path.contains('/fun1')){     
+      print(await request.transform(utf8.decoder).join());
+   } else if(request.uri.path.contains('/func2')){
 
-    await Future.delayed(Duration(seconds: math.Random().nextInt(10)));
-    //TODO 
-
-  });
-
-
-
+   } else if(request.uri.path.contains('/quit')){
+      rp ..headers.contentType = ContentType.text
+         ..write('bye bye');
+         server.close();
+   } else {
+      rp ..headers.contentType = ContentType.text
+         ..write('Home page');
+   }
 
 
 }
 
+  HttpServer server; 
+  const port = 9819;
+main(List<String> arguments) async{
+
+  //5秒後 Server 自動 shutdown
+  Timer.periodic(const Duration(seconds: 1), (timer){
+      if(timer.tick >= 5){
+        server.close();
+        timer.cancel();
+        print('timer.tick = ${timer.tick} sec server shutdown');
+        exit(0);
+      } 
+  });
+
+    //未來排程設定  
+    futureClientSend();
+
+    //啟動Server
+    server = await HttpServer.bind(InternetAddress.loopbackIPv4, port);
+    print('Server start at $port');
+    server.listen(requestHandler, onDone: ()=>print('server shutdown at $port close'), onError: print);
+
+
+
+
+   
+}
+
+futureClientSend() async {
+
+  var fun1 = () async{
+    HttpClient client = await HttpClient();
+    HttpClientRequest request = await client.post(InternetAddress.loopbackIPv4.host, port, 'fun1');
+      request.headers.contentType = ContentType.json;
+      request.write(jsonEncode({"name":"zorn","id":12}));
+    
+    //HttpClientRequest close後才拿得到 response物件
+    HttpClientResponse response = await request.close();
+    await response.transform(utf8.decoder).forEach(print);          
+  },
+  fun2 = () async {
+    HttpClientRequest request = await HttpClient().get('google.com.tw', 80, '');
+    HttpClientResponse response = await request.close();
+    response.
+  }
+
+   
+}
+
+
+
+
+
 Stream connect() {
 
-  Function onListener = ()=> print('開始'), 
-            onPause = ()=> print('暫停'), 
-            onResume = ()=>print('繼續'), 
-            onCancel = ()=>print('取消');
+  Function onListener = ()=>  print('開始'), 
+            onPause   = ()=>  print('暫停'), 
+            onResume  = ()=>  print('繼續'), 
+            onCancel  = ()=>  print('取消');
    
     StreamController ctrl = StreamController(
       onListen: onListener,
@@ -58,8 +114,9 @@ Stream connect() {
       
        if(i++ == 100){
          ctrl.close();
+         return false;
        }
-        return i < 10;
+        return true;
     });
 
     return ctrl.stream;

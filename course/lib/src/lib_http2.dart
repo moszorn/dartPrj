@@ -51,6 +51,8 @@ class LibHttp2 {
     },);
   }
 
+
+  //底下寫Server的方式比較不建議
   static runServer8889() {
      var port = 8889;
      print('127.0.0.1:$port/libhttp2');
@@ -79,4 +81,4 @@ void addCROSHeader(HttpHeaders headers){
   headers.add('Access-Control-Allow-Headers',
       'Origin, X-Requested-With, Content-Type, Accept');
 
-}
+}  
