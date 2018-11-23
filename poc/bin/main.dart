@@ -35,8 +35,6 @@ void requestHandler(HttpRequest request) async {
       rp ..headers.contentType = ContentType.text
          ..write('Home page');
    }
-
-
 }
 
   HttpServer server; 
@@ -45,7 +43,7 @@ main(List<String> arguments) async{
 
   //5秒後 Server 自動 shutdown
   Timer.periodic(const Duration(seconds: 1), (timer){
-      if(timer.tick >= 5){
+      if(timer.tick >= 11){
         server.close();
         timer.cancel();
         print('timer.tick = ${timer.tick} sec server shutdown');
@@ -60,11 +58,6 @@ main(List<String> arguments) async{
     server = await HttpServer.bind(InternetAddress.loopbackIPv4, port);
     print('Server start at $port');
     server.listen(requestHandler, onDone: ()=>print('server shutdown at $port close'), onError: print);
-
-
-
-
-   
 }
 
 futureClientSend() async {
@@ -77,16 +70,30 @@ futureClientSend() async {
     
     //HttpClientRequest close後才拿得到 response物件
     HttpClientResponse response = await request.close();
-    await response.transform(utf8.decoder).forEach(print);          
+     response.transform(utf8.decoder).forEach(print);          
   },
   fun2 = () async {
-    HttpClientRequest request = await HttpClient().get('google.com.tw', 80, '');
+    HttpClientRequest request = await HttpClient().get('tw.yahoo.com', 80, '');
     HttpClientResponse response = await request.close();
-    response.
-  }
+      response.transform(utf8.decoder).forEach(print);
+  },
+  fun3 = () async {
+      Uri url = Uri.parse('http://yahoo.com');
+      HttpClient()
+        .getUrl(url)
+        .then((httpClientRequest)=>httpClientRequest.close())
+        .then((httpClientResponse)=>httpClientResponse.transform(utf8.decoder).forEach(print));
+  };
+
+
+  List<Function> requests = <Function>[fun1,fun3];
+  requests.forEach((f) async{
+     await Future.delayed(Duration(seconds: math.Random().nextInt(10)));
+     f();
+  });
 
    
-}
+}         
 
 
 

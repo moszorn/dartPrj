@@ -30,7 +30,7 @@ void sendGetToGoogle() async {
 
     (await request.close())
     .transform(utf8.decoder)
-    .listen(print);
+    .forEach(print);
 }
 
 void sendGet(){
