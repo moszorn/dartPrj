@@ -1,8 +1,13 @@
 /*
  Set cannot contain identical elements.
- Set does not allow indexed access to an element in the collection. only through iterator and for-each loop methods
+ Set does not allow indexed access to an element in the collection. 
+ only through iterator and for-each loop methods
 
  The Set factory creates the instance of LinkedHashSet .
+
+  Dart 集合(Set) { ... }
+  Dart 集合(Set) 不允許重覆的元素
+  Dart 集合(Set) 沒有索引取值的概念,所有取值都是透過 iterator
  */
 
 class LibCollectionSet {
@@ -27,9 +32,30 @@ class LibCollectionSet {
   //  A與B差在哪
   static void difference(){
     var a = Set.from([3,2,3,1]), b = Set.from([2,1,5,6]);
-    print(a.difference(b));//A與B差在 A多個{3}
-    print(b.difference(a));//{5,6}
+    print(a.difference(b));//A與B差在 A多3    {3}
+    print(b.difference(a));//B與A差在 B多5跟6 {5,6}
   }
+
+  static void refSetDiff(){
+    var set1 = Set();
+    set1.add(ModelForSet('1'));
+  }
+
+  static void refSetFold(){
+    var set1 = Set();
+    set1.add(ModelForSet('A',1));
+    set1.add(ModelForSet('B',3));
+    set1.add(ModelForSet('C',4));
+    set1.add(ModelForSet('D',5));
+    set1.add(ModelForSet('E'));
+   var modelForSet_sum =  set1.fold(ModelForSet('',0), (pre,cur)=> ModelForSet(pre.name + cur.name , pre.sum + cur.sum));
+
+   print('將 Set內的物件(reference type)項目合併成為一個項目');
+     print(set1);
+    print(modelForSet_sum.name);
+    print(modelForSet_sum.sum);
+  }
+
 }
 /*
 { }  set （集合)
@@ -38,3 +64,18 @@ A∪B  union
 A⊆B  subset
 
  */
+
+class ModelForSet {
+  String name;
+  int sum;
+  ModelForSet(this.name,[sum]) : this.sum = sum == null ? 0 : sum;
+
+  String toString() => name;
+  // Set集合中儲存的是 ref type , 且
+  //要在Set collection中使用  intersection , union , subset  
+  //記得實作 operatro == 和 hashCode  屬性
+
+  operator ==(other) => other is ModelForSet && name == other.name;
+  int get hashCode => name.hashCode;
+
+}

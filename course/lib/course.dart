@@ -25,6 +25,8 @@ export 'src/lib_file.dart';
 export 'src/lib_http.dart';
 export 'src/lib_http2.dart';
 export 'src/lib_httpClient.dart';
+export 'src/lib_httpclient_httpserver.dart';
+
 export 'src/lib_convert.dart';
 export 'src/lib_stream.dart';
 export 'src/lib_stream2.dart';
