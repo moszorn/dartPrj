@@ -22,7 +22,7 @@ main(List<String> args) async {
   // print($out);
 
   /******************************************************************* */
-Utils.doRepeatJobByPeriod2();
+  //Utils.doRepeatJobByPeriod2();
   //Utils.doRepeatJobByPeriod(Duration(seconds: 1), (i)=> print('do job $i'), 5 );
 
   //LibConsole.clearScreen();
@@ -52,11 +52,13 @@ Utils.doRepeatJobByPeriod2();
   //LibFile.processFileException();
   //LibFile.readFileAsync();
 
-  //LibConvert.j2();
-  //LibConvert.toJ();
-  //LibConvert.u8decode();
-  //LibConvert.utf2dart();
-  //LibConvert.d2utf();
+  //LibDecodeEncodeConvert.j2();
+  //LibDecodeEncodeConvert.toJ();
+  //LibDecodeEncodeConvert.u8decode();
+  //LibDecodeEncodeConvert.run();
+  //LibDecodeEncodeConvert.utf2dart();
+  //LibDecodeEncodeConvert.d2utf();
+
   //LibHandle.handleErr();
   //LibHandle.handleErrAfterSuccess();
   //LibHandle.chainHandle();
@@ -130,6 +132,8 @@ Utils.doRepeatJobByPeriod2();
   //LibStreamController.entry1();
     //LibStreamController.entry2();
  //LibStreamController.streamView();
+
+ LibStreamController2.run1();
 
 
 
