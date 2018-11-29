@@ -382,7 +382,7 @@ class LibStream {
   static streamTransform2(){
       var stream = Stream.fromIterable([119,120,121,122,65,66,67,68,69,70]);
      
-      var trans = StreamTransformer.fromHandlers<int,String>(handleData:(trunk,sink){
+      var trans = StreamTransformer.fromHandlers(handleData:(trunk,sink){
           var ctrl = StreamController();
           ctrl.add(String.fromCharCode(trunk));
           return ctrl.stream;

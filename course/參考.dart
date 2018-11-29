@@ -81,8 +81,8 @@ Choosing the right collection :
   2. Choosing a class implements the minimum functionality that you require. Don`t choose a class that supports sorting if you don`t actually need it .UnsupportedError
 
 
-  order :  The Iterator follows the fail-fast principles to immediately report whether the iterating collection was modified. If you plan to create your own implementation of the Iterable interface, you need to extend IterableBase or IterableMixin. BidirectionalIterator helps to iterate over collections
-of elements in both directions.
+  order :  The Iterator follows the fail-fast principles to immediately report whether the iterating collection was modified. If you plan to create your own implementation of the Iterable interface, you need to extend IterableBase or IterableMixin. 
+           BidirectionalIterator helps to iterate over collections of elements in both directions.
   sort  : We can also sort collections by providing a collection-compare function via a Comparator or an object-compare method via the Comparable interface.
 
 
