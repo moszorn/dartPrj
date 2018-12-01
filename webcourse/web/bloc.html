@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="scaffolded-by" content="https://github.com/google/stagehand">
+    <title>web</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico">
+    <script defer src="bloc.dart.js"></script>
+</head>
+
+<body>
+ <pre>
+     import 'dart:html';
+     import 'dart:async';
+
+    class Bloc {
+        StreamController _email = StreamController();
+        get email => _email.sink.add;
+        get subscribe => _email.stream.listen;
+    }
+ </pre>
+ <div/>
+ <pre>
+     main() async{
+         var emailRedux = Bloc();
+         emailRedux.subscribe(print);
+
+        int counter = 0;
+        await Future.delayed(const Duration(seconds:3));
+        emailRedux(counter++);
+
+        await Future.delayed(const Duration(seconds:3));
+        emailRedux(counter++);
+
+        await Future.delayed(const Duration(seconds:3));
+        emailRedux(counter++);
+
+     }
+ </pre>
+
+</body>
+</html>

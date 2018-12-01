@@ -41,10 +41,25 @@ void requestHandler(HttpRequest request) async {
   const port = 9819;
 
 main(List<String> arguments) async{
+   
+  //只有在c 為 null時,才賦值 d
+  String c,d='d',e = c??d;
+  print(e);
 
-     var map = Map.fromIterables(['a',14,'c',null,'e'], [10,'R',30,40,null]);
-    map.putIfAbsent(Model('hi'), ()=>Model('world'));
-    print(map);
+  //只有在 f 為 null時 , 才賦值g
+  String f,g = 'f is null';
+  f ??= g;
+  print(g);
+
+  // 只有j不為 null時 , h才會被賦值 (i.toString()), 否則 h 仍然是 null
+  String j ;
+  String h = j?.toString();
+  print(h);
+
+
+
+
+
 }
        
 
