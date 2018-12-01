@@ -1,53 +1,84 @@
 import 'dart:html';
 import 'dart:async';
 
-class Validator{
-
-  final emailTransform = StreamTransformer<String,String>.fromHandlers(
-    handleData:( data,EventSink sink){
-      if(data.contains('@')) sink.add(data);
-      else sink.addError('invalid input , "@" needed');
+class Validator {
+  final emailTransform = StreamTransformer<String, String>.fromHandlers(
+          handleData: (data, EventSink sink) {
+    if (data.contains('@'))
+      sink.add(data);
+    else
+      sink.addError('invalid input , "@" needed');
   }),
-     passwordTramsform = StreamTransformer<String,String>.fromHandlers(
-    handleData:( data, EventSink sink){
-      if(data.length >= 3) sink.add('');
-      else sink.addError('invalid length of password');
-    });
+      passwordTramsform = StreamTransformer<String, String>.fromHandlers(
+          handleData: (data, EventSink sink) {
+    if (data.length >= 3)
+      sink.add('');
+    else
+      sink.addError('invalid length of password');
+  });
 }
 
-class Blob extends Object with Validator{
-
+class Blob extends Object with Validator {
   StreamController _email = StreamController<String>();
   StreamController _password = StreamController<String>();
 
   Stream<String> get email => _email.stream.transform(emailTransform);
-  Stream<String> get password => _email.stream.transform(passwordTramsform);
+  Stream<String> get password => _password.stream.transform(passwordTramsform);
 
   Function(String) get changeEmal => _email.sink.add;
   Function(String) get changePassword => _password.sink.add;
 
- dispose(){
+  dispose() {
     _email.close();
     _password.close();
   }
 }
 
-
 final TextInputElement iptEmail = querySelector('#email');
 final TextInputElement iptPw = querySelector('#password');
-final SpanElement warrningEmail = querySelector('#emailhint');
+final Element warrningEmail = querySelector('#emailhint');
 final SpanElement warrningPw = querySelector('#passwordhint');
 
-void main() async{
+void main() async {
+  BlocEmail(iptEmail.onInput).subscribe((d) {
+    warrningEmail..text = '';
+  }, onError: (err) {
+    warrningEmail
+      ..text = ''
+      ..text = err;
+  });
+
+
+  //底下用Blob 要分兩次
   var bloc = Blob();
+  iptPw.onInput
+      .map((dynamic ev) => ev.target.value)
+      .listen(bloc.changePassword);
 
-  iptEmail.onInput
-    .map((dynamic ev)=>  ev.target.value)
-    .transform((o)=> bloc.changeEmal(ev.target.value))
-    .listen((value)=> print(value));
+  bloc.password.listen((o) => warrningPw..text = '', onError: (d) {
+    warrningPw
+      ..text = ''
+      ..text = d;
+  });
+}
 
-   iptPw.onInput
-    .map((dynamic ev)=>  bloc.changePassword(ev.target.value))
-    .listen((value)=> print(value));
+class BlocEmail extends Object with Validator {
+  StreamController _email = StreamController<String>();
 
+  ElementStream<Event> _elementStream;
+  BlocEmail(ElementStream<Event> elementEvent) {
+    _elementStream = elementEvent;
+
+    //'_MapStream<Event$, dynamic>
+    _elementStream
+        .map((dynamic event) => event.target.value as String)
+        .transform(emailTransform)
+        .listen((data) {
+      _email.sink.add(data);
+    }, onError: (err) {
+      _email.sink.addError(err);
+    });
+  }
+
+  Function get subscribe => _email.stream.listen;
 }
