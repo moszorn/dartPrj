@@ -3,8 +3,12 @@
 
     class Bloc {
         StreamController _email = StreamController();
-        get email => _email.sink.add;
-        get subscribe => _email.stream.listen;
+
+        Function(int) get email => _email.sink.add;
+        Function get subscribe => _email.stream.listen;
+
+
+        Stream<String> get emailStream => _email.stream;
     }
 
       main() async{
