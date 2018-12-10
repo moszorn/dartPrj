@@ -9,6 +9,12 @@ class _LibItem {
 
 
 class LibCollection{
+
+  static List<_LibItem> ListGenerate(){
+    final items_count = 10;
+    return List.generate(items_count, (i)=> _LibItem('Item ${i.toString()}', i ));
+  }
+
   static List2Map(){
      final list = <_LibItem> [
        _LibItem('item1', '#f3da3b'),
