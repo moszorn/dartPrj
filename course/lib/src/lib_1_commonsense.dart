@@ -9,6 +9,10 @@ import 'dart:async';
 import "lib_console.dart";
 
 
+enum Permission {
+  deny , update , delete , select
+}
+
 enum Color {
   red, green, blue, brown, black, white
 }
@@ -54,6 +58,28 @@ class LibCommonSense{
     assert((3 | 4) == 7); // 0011 | 0100 == 0111 bitwise shift
   }
 
+  static tweakPermission(){
+
+    /*
+      enum Permission {
+          deny , update , delete , select
+      }
+     */
+
+
+    var permission1 = Permission.update;//1
+    var permission2 = Permission.delete;//2
+    var permission3 = Permission.select;//3
+    var permission10 = Permission.deny;//0
+  	
+    // set permission from 1,2
+    print( permission1.index | permission2.index );
+    
+    // revoke all permission
+    print( permission10.index & permission2.index );
+
+  }
+
 
   static aboutEnum(){
 
@@ -65,14 +91,14 @@ class LibCommonSense{
      print('  ' + Color.black.index.toString());
 
      Color color = Color.red;
+
      print(color);
      print(' ${color.runtimeType} $color index: ${color.index}');
 
 
      List<Color> colors = Color.values;
-     colors.forEach(
-       (c)=> print(c.index)
-       );
+
+     colors.forEach((c)=> print(c.index));
 
      switch(color) {
        case Color.red:

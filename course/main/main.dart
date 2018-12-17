@@ -22,11 +22,9 @@ main(List<String> args) async {
   // print($out);
 
   /******************************************************************* */
-<<<<<<< HEAD
-  //Utils.doRepeatJobByPeriod2();
-=======
+
 //Utils.doRepeatJobByPeriod2();
->>>>>>> e0075b10121cece995cb88a0b6579f97479272e7
+
   //Utils.doRepeatJobByPeriod(Duration(seconds: 1), (i)=> print('do job $i'), 5 );
 
   //LibConsole.clearScreen();
