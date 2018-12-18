@@ -2,9 +2,11 @@
   Dart Map   { k1:v1, k2:v2, k3:v3, .. } 
   Dart Map 元素不允許重覆key ,但允許eky值為 null
   Dart Map 是不可列舉型集合,但提供對其keys與 values進行列舉的屬性 
-   ( Map class is not a subtype of the Iterator (IteratorBase or even IteratorMixin, 
-    but  provides seprarte iterators for Keys and Values
-   )
+   
+  ( 
+    Map class is not a subtype of the Iterator
+     (IteratorBase or even IteratorMixin, but provides seprarte iterators for Keys and Values
+  )
 
   對於 Map集合中為參考型別進行操作時,參考型別必需實作 equals operator , hashCode
 

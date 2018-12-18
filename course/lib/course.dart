@@ -17,6 +17,8 @@ export 'src/lib_collection_queue.dart';
 export 'src/lib_collection_map.dart';
 export 'src/lib_collection_hashmap.dart';
 
+export 'src/lib_json_map_convert.dart';
+
 export 'src/lib_decode_encode_convert.dart';
 export 'src/lib_1_commonsense.dart';
 export 'src/lib_collection.dart';
@@ -26,13 +28,10 @@ export 'src/lib_file.dart';
 export 'src/lib_http.dart';
 export 'src/lib_http2.dart';
 export 'src/lib_httpClient.dart';
-<<<<<<< HEAD
 
-=======
 export 'src/lib_httpclient_httpserver.dart';
 
-export 'src/lib_convert.dart';
->>>>>>> e0075b10121cece995cb88a0b6579f97479272e7
+
 export 'src/lib_stream.dart';
 export 'src/lib_stream2.dart';
 export 'src/lib_stream_controller.dart';

@@ -1,0 +1,56 @@
+run the code generator that generates the serialization boilerplate.
+
+------------------------ pubspec.yaml
+dependencies:
+  json_annotation: ^2.0.0
+
+
+dev_dependencies:
+  test: ^1.0.0
+  build_runner: ^1.0.0
+  json_serializable: ^2.0.0
+
+-------------------------
+import 'package:json_annotation/json_annotation.dart';
+
+part 'user.g.dart';
+
+@JsonSerializable()
+class User {
+
+  final String name;
+  final String email;
+  final int age;
+
+  User(this.name,this.email,this.age);
+ 
+  factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
+
+  Map<String, dynamic> toJson() => _$UserToJson(this);
+
+  /// Tell json_serializable that "registration_date_millis" should be
+  /// mapped to this property.
+  //@JsonKey(name: 'registration_date_millis')
+  //final int registrationDateMillis;
+}
+
+-------------------------
+There are two ways of running the code generator.
+
+1) One-time code generation
+   在專案根目錄下執行
+   flutter > flutter packages pub run build_runner build
+   dart > pub run build_runner build
+
+2) Generating code continuously by watcher
+    在專案根目錄下執行
+    flutter > flutter packages pub run build_runner watch
+    dart > pub run build_runner watch
+
+
+
+
+
+
+
+

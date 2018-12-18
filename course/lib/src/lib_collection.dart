@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'dart:convert';
 
 class _LibItem {
   String name;
@@ -9,6 +9,34 @@ class _LibItem {
 
 
 class LibCollection{
+
+
+ static mapDeclaration(){
+
+    var map2 = {
+        "a": "AAA",
+        "b": "BBB",
+        "c:": "CCC",
+    };
+
+    var map3 = <String,String>{
+        "a": "AAA",
+        "b": "BBB",
+        "c:": "CCC",
+    };
+
+    var map4 = Map();
+    map4["a"] = "AAA";
+    map4["b"] = "BBB";
+    map4["c"] = "CCC";
+
+    print('----------------------------${map2.runtimeType}--------------');//_InternalLinkedHashMap<String, String>
+    
+    print('----------------------------${map3.runtimeType}--------------');//_InternalLinkedHashMap<String, String>
+    
+    print('----------------------------${map4.runtimeType}--------------');//_InternalLinkedHashMap<dynamic, dynamic>
+    
+  }
 
   static List<_LibItem> ListGenerate(){
     final items_count = 10;
@@ -29,8 +57,9 @@ class LibCollection{
 
 
 
-  /*
- Map is an object that associates keys and values. Both keys and values can be any type of object .
+  /* 定義:
+ Map is an object that associates keys and values. 
+ Both keys and values can be any type of object .
  Each key occurs only once .
  */
   static aboutMap(){
@@ -46,8 +75,8 @@ class LibCollection{
       3: 32,
       4: true
     };
-    print(map1.runtimeType);
-    print(map2.runtimeType);
+    print(map1.runtimeType);// _InternalLinkedHashMap<String,String>
+    print(map2.runtimeType);//  _InternalLinkedHashMap<int, Object>
     print('-------------------------------------------') ;
     print(map2[0]);//null
     print(map2[2].runtimeType);//String
@@ -56,12 +85,16 @@ class LibCollection{
     print('-------------------------------------------') ;
   }
 
+  //比對 aboutMap1() , 當宣告 Map時 , 用 map literal 宣告比用 Map() 還高效率,
+  // 除非元素將會要包含不確定的型別 dynamic
   static aboutMap2(){
     var map1 = Map();
       map1['1']='first';
       map1['2']='second';
       map1['3']='third';
       print(map1['3']);//third
+ print('--------------------${map1.runtimeType}-----------------------') ;//_InternalLinkedHashMap<dynamic, dynamic>
+    
 
    var map2 = Map();
     map2[2]=true;
@@ -101,6 +134,23 @@ class LibCollection{
     });
   }
 
+  static jsonToMap() {
+
+    final String _json='''
+    {
+      "name": "IamA",
+      "age": 12,
+      "isOk": true
+    }
+    ''';
+
+     Map json = jsonDecode(_json);
+     ModelxyZ a = ModelxyZ.fromJson(json);
+    print(a);
+
+  }
+ 
+
   /**
    List : 
       an ordered collection that supports indexed access to elements
@@ -135,7 +185,21 @@ class LibCollection{
       print(e );
     }
   }
-
-
 }
 
+class ModelxyZ {
+
+  String name;
+  int age;
+  bool isOk;
+
+  ModelxyZ.fromJson(Map<String, dynamic> json):
+  name = json['name'], 
+   age = json['age'], 
+  isOk = json['isOk'];
+
+  String toString(){
+    return "$name , age=$age, isOk=$isOk";
+  }
+
+}

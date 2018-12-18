@@ -164,7 +164,16 @@ To convert a code point to a string, you use the String constructor String.fromC
 
  */
   static characterType(){
-
+    /*
+    A = 65
+    B = 66
+    C = 67
+    D = 68
+    w = 119
+    x = 120
+    y = 121
+    z = 122
+     */
     'ABCDwxyz'.split('').forEach((o)=>print('$o = ${o.codeUnitAt(0)}'));
 
 
@@ -198,14 +207,14 @@ To convert a code point to a string, you use the String constructor String.fromC
 
   //文字數值 指定保留几位小数
   static toStringAsFixed(){
-      // Specify the number of digits after the decimal.
+      // Specify the number of digits after the decimal四捨五入
         assert(123.456.toStringAsFixed(2) == '123.46');
   }
   //文字數值 指定几位有效数字
   static toStringAsPrecision(){
     // Specify the number of significant figures.
-    assert(123.456.toStringAsPrecision(2) == '1.2e+2');
-    assert(double.parse('1.2e+2') == 120.0);
+    assert(123.456.toStringAsPrecision(2) == '1.2e+2');  //true
+    assert(double.parse('1.2e+2') == 120.0); //true
   }
 
   static stringOperation() {
@@ -304,7 +313,21 @@ void aboutString2(){
  // const v1 = '$n $b $s';
 }
 
+void common_sense(){
+    //只有在c 為 null時,才賦值 d
+  String c,d='d',e = c??d;
+  print(e);
 
+  //只有在 f 為 null時 , 才賦值g
+  String f,g = 'f is null';
+  f ??= g;
+  print(g);
+
+  // 只有j不為 null時 , h才會被賦值 (i.toString()), 否則 h 仍然是 null
+  String j ;
+  String h = j?.toString();
+  print(h);
+}
 
 /*
 在Dart中表示一 operator , 或 identifier .
@@ -367,11 +390,7 @@ void positional_parameters(){
 
 
 
-// @required
-// Required is defined in the meta package. 
-// Either import package:meta/meta.dart directly, 
-// or import another package that exports meta, 
-// such as Flutter’s package:flutter/material.dart. 
+
 
 // Optional named parameters 宣告
 /// Sets the [bold] and [hidden] flags ...

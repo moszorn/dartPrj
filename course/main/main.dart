@@ -30,10 +30,15 @@ main(List<String> args) async {
   //LibConsole.clearScreen();
   //LibConsole.argHandlerForRadFileWithLineNumber(args);
   //LibConsole.stdinPipe2Stdout();
+  //LibCollection.aboutMap();
   //LibCollection.List2Map();
   //LibCollection.map1();
   //LibCollection.aboutMap2();
   //LibCollection.dynamicMap();
+  //LibCollection.mapDeclaration();
+  //LibCollection.jsonToMap();
+  //LibJsonMapConvert.map2Json();
+  LibJsonMapConvert.json2MapUseFun();
 
   //LibFile.fileInCurrentDirectoryMap();
   //LibFile.fileInCurrentDirList();
@@ -88,7 +93,7 @@ main(List<String> args) async {
 //LibCollectionCustomList.randomShuffle();
 
   //LibCollectionLinkList.run1();
-  //LibCollectionSet.run1();
+  //LibCollectionSet.run1(); 
   //LibCollectionSet.intersection();
   //LibCollectionSet.union();
     //LibCollectionSet.difference();
@@ -137,7 +142,7 @@ main(List<String> args) async {
     //LibStreamController.entry2();
  //LibStreamController.streamView();
 
- LibStreamController2.run1();
+ //LibStreamController2.run1();
 
 
 

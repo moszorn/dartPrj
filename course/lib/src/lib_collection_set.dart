@@ -14,6 +14,8 @@ class LibCollectionSet {
   static void run1(){
     var a = Set.from([2,3,null,5,2,null,4]); //2 is duplicated , Set 最多只會包含一個 null 元素
     print(a);// {2,3,null,5,4}
+
+    a.forEach((f)=> print(f));
   }
 
   //Intersection 會回傳內部集合和另一個集合之間的交集 (回傳一個新的Set集合)
@@ -42,18 +44,21 @@ class LibCollectionSet {
   }
 
   static void refSetFold(){
+
     var set1 = Set();
+    
     set1.add(ModelForSet('A',1));
     set1.add(ModelForSet('B',3));
     set1.add(ModelForSet('C',4));
     set1.add(ModelForSet('D',5));
     set1.add(ModelForSet('E'));
+
    var modelForSet_sum =  set1.fold(ModelForSet('',0), (pre,cur)=> ModelForSet(pre.name + cur.name , pre.sum + cur.sum));
 
-   print('將 Set內的物件(reference type)項目合併成為一個項目');
-     print(set1);
-    print(modelForSet_sum.name);
-    print(modelForSet_sum.sum);
+    print('將 Set內的物件(reference type)項目合併成為一個項目');
+    print(set1);// {A1, B3, C4, D5, E0}
+    print(modelForSet_sum.name);//ABCDE
+    print(modelForSet_sum.sum);//13
   }
 
 }
@@ -68,13 +73,13 @@ A⊆B  subset
 class ModelForSet {
   String name;
   int sum;
-  ModelForSet(this.name,[sum]) : this.sum = sum == null ? 0 : sum;
+  ModelForSet(this.name,[sum = 0]);
 
-  String toString() => name;
+  String toString() => name+sum.toString();
+
   // Set集合中儲存的是 ref type , 且
   //要在Set collection中使用  intersection , union , subset  
   //記得實作 operatro == 和 hashCode  屬性
-
   operator ==(other) => other is ModelForSet && name == other.name;
   int get hashCode => name.hashCode;
 
