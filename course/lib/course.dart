@@ -31,7 +31,10 @@ export 'src/lib_httpClient.dart';
 
 export 'src/lib_httpclient_httpserver.dart';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d64ac3079523ebeecad2b816ab05d49c68dda840
 export 'src/lib_stream.dart';
 export 'src/lib_stream2.dart';
 export 'src/lib_stream_controller.dart';

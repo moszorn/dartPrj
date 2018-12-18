@@ -1,4 +1,4 @@
-import "dart:convert" show json, utf8, base64,LineSplitter;
+import "dart:convert" show json, utf8, base64, LineSplitter;
 import 'dart:io';
 
 const String helloString = 'hell world';
@@ -13,7 +13,7 @@ const String jsonString = '''
 class LibDecodeEncodeConvert {
   static run() {
     //轉成bytes
-    List<int> bytes = utf8.encode(helloString);
+    List<int> bytes = utf8.encode(jsonString);
     //再由bytes 進行 base 64
     String b64 = base64.encode(bytes);
     //
