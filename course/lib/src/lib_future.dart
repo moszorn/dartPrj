@@ -5,13 +5,13 @@ import 'dart:convert';
 import 'lib_console.dart';
 
 //沒有 async
-Future<String> _loadString2() {
+Future _loadString2() {
   return Future.delayed(Duration(seconds: 2))
       .then((_) => '(loadString2) hello world');
 }
 
 Future<String> _loadString1() async {
-  await Future.delayed(Duration(seconds: 2));
+  await Future.delayed(Duration(seconds: 5));
   return '(loadString1) hello world';
 }
 
@@ -59,11 +59,18 @@ class LibFuture {
     return (int y) async => x + y;
   }
 
+
+  static void loadingString2() {
+    print('Before LoadingString2');
+    _loadString2().then(print);
+    print('After LoadingString2');
+  }
+
   static void loadStringNonBlock() {
     LibConsole.clearScreen();
     print('[loadStringNonBlock] start load String ');
-    _loadString1().then((o) => stdout.writeln('  ' + o));
-    _loadString2().then((o) => stdout.writeln('  ' + o));
+    _loadString1().then(print);
+    _loadString2().then(print);
     print('[loadStringNonBlock] end load String');
   }
 

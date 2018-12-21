@@ -38,7 +38,7 @@ main(List<String> args) async {
   //LibCollection.mapDeclaration();
   //LibCollection.jsonToMap();
   //LibJsonMapConvert.map2Json();
-  LibJsonMapConvert.json2MapUseFun();
+ // LibJsonMapConvert.json2MapUseFun();
 
   //LibFile.fileInCurrentDirectoryMap();
   //LibFile.fileInCurrentDirList();
@@ -59,10 +59,10 @@ main(List<String> args) async {
   //LibFile.processFileException();
   //LibFile.readFileAsync();
 
-  //LibDecodeEncodeConvert.j2();
+ // LibDecodeEncodeConvert.j2();
   //LibDecodeEncodeConvert.toJ();
   //LibDecodeEncodeConvert.u8decode();
-  LibDecodeEncodeConvert.run();
+  //LibDecodeEncodeConvert.run();
   //LibDecodeEncodeConvert.utf2dart();
   //LibDecodeEncodeConvert.d2utf();
 
@@ -103,7 +103,8 @@ main(List<String> args) async {
 //LibCollectionMap.run1();
 //LibCollectionHashMap.run1();
 
-  //LibFuture.loadStringBlock();
+//LibFuture.loadingString2();
+  LibFuture.loadStringBlock();
   //LibFuture.loadStringNonBlock();
   //LibFuture.waitAllFuture();
 
@@ -138,17 +139,15 @@ main(List<String> args) async {
   //LibStream2.periodStream();
   //LibStream2.streamTransfomation();
 
-  //LibStreamController.entry1();
-<<<<<<< HEAD
+
     //LibStreamController.entry2();
- //LibStreamController.streamView();
+ //LibStreamController.streamView(); 
 
  //LibStreamController2.run1();
 
-=======
+
   //LibStreamController.entry2();
   //LibStreamController.streamView();
->>>>>>> d64ac3079523ebeecad2b816ab05d49c68dda840
 
 //LibStreamController2.run1();
 

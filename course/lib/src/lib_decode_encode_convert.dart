@@ -11,6 +11,16 @@ const String jsonString = '''
 ''';
 
 class LibDecodeEncodeConvert {
+
+
+   static void utf8Simple() {
+     
+     var r = '火雲';
+     List<int> bytes = utf8.encode(r);
+     String str = utf8.decode(bytes);
+   }
+
+
   static run() {
     //轉成bytes
     List<int> bytes = utf8.encode(jsonString);
@@ -32,9 +42,12 @@ class LibDecodeEncodeConvert {
 
   //將json 字串轉成Dart : decode
   static j2() {
-    dynamic scores = json.decode(jsonString);
+
+    //scores.runtimeType --> 
+   var scores = json.decode(jsonString);
+   print(scores.runtimeType);//List<dynamic>
     print(scores);
-    print(scores is List); // true
+    print(scores is List); // true 
     print(scores[0] is Map); // true
 
     (scores as List).forEach((f) => print(f['score']));
@@ -172,3 +185,10 @@ class LibDecodeEncodeConvert {
 
 //12450 12452 12450 12531 12461 12531 12464 12467 12531 12464
 //アイアンキングコング
+
+
+
+
+
+
+

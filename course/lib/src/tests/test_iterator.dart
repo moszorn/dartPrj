@@ -24,6 +24,20 @@ class Process {
   Process(id,emmoey,name);
 }
 
+/** 必須實作 current , moveNext()  */
+class XXXX implements Iterator{
+  @override
+  // TODO: implement current
+  get current => null;
+
+  @override
+  bool moveNext() {
+    // TODO: implement moveNext
+    return null;
+  }
+
+
+}
 
 //Process Iterator
 class ProcessIterator implements Iterator<Process> {
@@ -32,10 +46,7 @@ class ProcessIterator implements Iterator<Process> {
   List<Process> list;
   int _currentIndex = -1;
 
-  ProcessIterator(this.list){
-     print(this.list.length);
-     print(this.list[0].name);
-  }
+  ProcessIterator(this.list);
 
   reset(){
     _currentIndex = -1;

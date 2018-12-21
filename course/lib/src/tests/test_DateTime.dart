@@ -12,14 +12,17 @@ testDateTime(){
         millisecond = 789,
         microsecond = 123;
      var d = DateTime(year,month,day,hour,minute,sec,millisecond,microsecond);
-     stdout.writeln(d);
+     stdout.writeln(d);//2018-11-06 11:59:31.789
 
       //millisecondsSinceEpoch 的值為 從 “Unix epoch”—1970年1月1號 UTC 時區 開始的毫秒數值
       // 用 Unix epoch 開始的毫秒數來設置時間
+
       var y2k = new DateTime.fromMillisecondsSinceEpoch(946684800000, isUtc: true);
 
       // 解析 ISO 8601 格式日期
+      //2000-01-01 00:00:00.000Z
       y2k = DateTime.parse('2000-01-01T00:00:00Z');
+       stdout.writeln((y2k is DateTime));// true
 
       stdout.writeln(y2k);//2000-01-01 00:00:00.000Z
 

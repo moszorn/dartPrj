@@ -20,8 +20,7 @@ void testURI(){
        */
 // path , pathSegments 取其一 : path: '/segment1/segment1-sub',
 // query , queryParameters 取其一 : name=yama&age=12&isOk=false
-
-
+//http://zorn@127.0.0.1:8090/segment1/segment1-sub?name=yama&age=12&isOk=false#afterHash.secret
       Uri uri1 = Uri(
         scheme: 'http', 
         host: '127.0.0.1',

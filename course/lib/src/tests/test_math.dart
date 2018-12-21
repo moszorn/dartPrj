@@ -13,7 +13,7 @@ testMath(){
      // 30 度表示為  30 * (math.pi/180) 
      // 45 度表示為 45 * (math.pi/180)
      //所以 sin30 = math.sin( 30 * ( math.pi/ 180 ) )
-     num sin30 = 0.5, degrees = 30, radians = degrees * (math.pi/180);
+     num sin30 = 0.5, degrees = 30, radians = degrees * (math.pi/180);//(3.14 * 30/180)
 
      print(math.sin(radians));//0.49999999999999994
 

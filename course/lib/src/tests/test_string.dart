@@ -59,12 +59,13 @@ void testString() {
     expect(mary.contains(checker) , false);
     expect(john.contains(checker), true);
 
-    //將所有數字文字用NN取代
+    //將所有數字文字用 NN這兩個字母 取代
     expect(john.replaceAll(checker, 'NN') == 'my birthday is NN/NN', true);
 
     //檢測字符串中是否有匹配的項
     expect(checker.hasMatch('Luna live 15 to 20 years'), true);
 
+    //取出字串中所有匹配的項目
     Iterable<Match> matchs = checker.allMatches('Luna live 15 to 20 years');
     expect(matchs.length,2);
      expect(matchs.first.group(0), '15');
