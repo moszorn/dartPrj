@@ -94,3 +94,27 @@ shift + alt(option) + n (建立資料夾)
 shift + option + f (將程式區塊排列整齊 code block format)
 (*)  ctrl + tab =如同按滑鼠右鍵
 ---------------------------------------------------------------------------------------------------------
+Flutter Debug UI
+import 'package:flutter/rendering.dart';
+
+void main(){
+
+  //Simulator show grid on Widget
+  debugPainSizeEnabled = true;
+
+  // display widget baseline
+  debugPaintBaseelinesEbabled = true;
+
+  //where tap raised
+  debugPaintPointersEnabled = true;
+
+  runApp(MyApp());
+}
+
+
+
+
+
+MaterialApp( 
+  debugShowMaterialGrid: true
+)
